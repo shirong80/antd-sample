@@ -1,0 +1,10 @@
+<label
+  nz-checkbox
+  class="ant-checkbox-group-item"
+  *ngFor="let o of options; trackBy: trackByOption"
+  [nzDisabled]="o.disabled || nzDisabled"
+  [nzChecked]="o.checked!"
+  (nzCheckedChange)="onCheckedChange(o, $event)"
+>
+  <span>{{ o.label }}</span>
+</label>

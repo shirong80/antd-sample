@@ -1,0 +1,24 @@
+<span
+  [class.ant-radio]="!isRadioButton"
+  [class.ant-radio-checked]="isChecked && !isRadioButton"
+  [class.ant-radio-disabled]="nzDisabled && !isRadioButton"
+  [class.ant-radio-button]="isRadioButton"
+  [class.ant-radio-button-checked]="isChecked && isRadioButton"
+  [class.ant-radio-button-disabled]="nzDisabled && isRadioButton"
+>
+  <input
+    #inputElement
+    type="radio"
+    [attr.autofocus]="nzAutoFocus ? 'autofocus' : null"
+    [class.ant-radio-input]="!isRadioButton"
+    [class.ant-radio-button-input]="isRadioButton"
+    [disabled]="nzDisabled"
+    [checked]="isChecked"
+    [attr.name]="name"
+  />
+  <span
+    [class.ant-radio-inner]="!isRadioButton"
+    [class.ant-radio-button-inner]="isRadioButton"
+  ></span>
+</span>
+<span><ng-content></ng-content></span>
