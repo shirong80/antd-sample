@@ -1,0 +1,77 @@
+<nz-select-top-control
+  cdkOverlayOrigin
+  #origin="cdkOverlayOrigin"
+  [nzId]="nzId"
+  [open]="nzOpen"
+  [disabled]="nzDisabled"
+  [mode]="nzMode"
+  [@.disabled]="noAnimation?.nzNoAnimation"
+  [nzNoAnimation]="noAnimation?.nzNoAnimation"
+  [maxTagPlaceholder]="nzMaxTagPlaceholder"
+  [removeIcon]="nzRemoveIcon"
+  [placeHolder]="nzPlaceHolder"
+  [maxTagCount]="nzMaxTagCount"
+  [customTemplate]="nzCustomTemplate"
+  [tokenSeparators]="nzTokenSeparators"
+  [showSearch]="nzShowSearch"
+  [autofocus]="nzAutoFocus"
+  [listOfTopItem]="listOfTopItem"
+  (inputValueChange)="onInputValueChange($event)"
+  (tokenize)="onTokenSeparate($event)"
+  (deleteItem)="onItemDelete($event)"
+  (keydown)="onKeyDown($event)"
+></nz-select-top-control>
+<nz-select-arrow
+  *ngIf="nzShowArrow"
+  [loading]="nzLoading"
+  [search]="nzOpen && nzShowSearch"
+  [suffixIcon]="nzSuffixIcon"
+></nz-select-arrow>
+<nz-select-clear
+  *ngIf="nzAllowClear && !nzDisabled && listOfValue.length"
+  [clearIcon]="nzClearIcon"
+  (clear)="onClearSelection()"
+></nz-select-clear>
+<ng-template
+  cdkConnectedOverlay
+  nzConnectedOverlay
+  [cdkConnectedOverlayHasBackdrop]="nzBackdrop"
+  [cdkConnectedOverlayMinWidth]="
+    $any(nzDropdownMatchSelectWidth ? null : triggerWidth)
+  "
+  [cdkConnectedOverlayWidth]="
+    $any(nzDropdownMatchSelectWidth ? triggerWidth : null)
+  "
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayTransformOriginOn]="'.ant-select-dropdown'"
+  [cdkConnectedOverlayPanelClass]="nzDropdownClassName!"
+  [cdkConnectedOverlayOpen]="nzOpen"
+  (overlayOutsideClick)="onClickOutside($event)"
+  (detach)="setOpenState(false)"
+  (positionChange)="onPositionChange($event)"
+>
+  <nz-option-container
+    [ngStyle]="nzDropdownStyle"
+    [itemSize]="nzOptionHeightPx"
+    [maxItemLength]="nzOptionOverflowSize"
+    [matchWidth]="nzDropdownMatchSelectWidth"
+    [class.ant-select-dropdown-placement-bottomLeft]="
+      dropDownPosition === 'bottom'
+    "
+    [class.ant-select-dropdown-placement-topLeft]="dropDownPosition === 'top'"
+    [@slideMotion]="'enter'"
+    [@.disabled]="noAnimation?.nzNoAnimation"
+    [nzNoAnimation]="noAnimation?.nzNoAnimation"
+    [listOfContainerItem]="listOfContainerItem"
+    [menuItemSelectedIcon]="nzMenuItemSelectedIcon"
+    [notFoundContent]="nzNotFoundContent"
+    [activatedValue]="activatedValue"
+    [listOfSelectedValue]="listOfValue"
+    [dropdownRender]="nzDropdownRender"
+    [compareWith]="compareWith"
+    [mode]="nzMode"
+    (keydown)="onKeyDown($event)"
+    (itemClick)="onItemClick($event)"
+    (scrollToBottom)="nzScrollToBottom.emit()"
+  ></nz-option-container>
+</ng-template>
