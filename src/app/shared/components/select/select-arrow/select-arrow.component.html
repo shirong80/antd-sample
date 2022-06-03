@@ -1,0 +1,12 @@
+<i nz-icon nzType="loading" *ngIf="loading; else defaultArrow"></i>
+<ng-template #defaultArrow>
+  <ng-container *ngIf="!suffixIcon; else suffixTemplate">
+    <i nz-icon nzType="down" *ngIf="!search"></i>
+    <i nz-icon nzType="search" *ngIf="search"></i>
+  </ng-container>
+  <ng-template #suffixTemplate>
+    <ng-container *nzStringTemplateOutlet="suffixIcon; let suffixIcon">
+      <i nz-icon [nzType]="suffixIcon"></i>
+    </ng-container>
+  </ng-template>
+</ng-template>

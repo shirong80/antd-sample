@@ -1,0 +1,18 @@
+<input
+  #inputElement
+  [attr.id]="nzId"
+  autocomplete="off"
+  class="ant-select-selection-search-input"
+  [ngModel]="value"
+  [attr.autofocus]="autofocus ? 'autofocus' : null"
+  [disabled]="disabled"
+  [style.opacity]="showInput ? null : 0"
+  (ngModelChange)="onValueChange($event)"
+  (compositionstart)="setCompositionState(true)"
+  (compositionend)="setCompositionState(false)"
+/>
+<span
+  #mirrorElement
+  *ngIf="mirrorSync"
+  class="ant-select-selection-search-mirror"
+></span>

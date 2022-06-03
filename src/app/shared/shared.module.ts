@@ -7,10 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { NzCheckboxModule } from './components/checkbox/checkbox.module';
 // * Radio
 import { NzRadioModule } from './components/radio/radio.module';
+// * select
+import { NzSelectModule } from './components/select/select.module';
 
-const customModules = [NzCheckboxModule, NzRadioModule];
+const MODULES = [NzCheckboxModule, NzRadioModule, NzSelectModule];
 @NgModule({
-  imports: [CommonModule, FormsModule, customModules],
-  exports: customModules,
+  imports: [CommonModule, FormsModule, MODULES],
+  exports: MODULES,
 })
 export class SharedModule {}

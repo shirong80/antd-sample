@@ -9,8 +9,13 @@ import { SampleComponent } from './sample.component';
 
 import { SampleCheckboxComponent } from './checkbox/checkbox.component';
 import { SampleRadioComponent } from './radio/radio.component';
+import { SampleSelectComponent } from './select/select.component';
 
-const COMPONENTS = [SampleCheckboxComponent, SampleRadioComponent];
+const COMPONENTS = [
+  SampleCheckboxComponent,
+  SampleRadioComponent,
+  SampleSelectComponent,
+];
 
 @NgModule({
   declarations: [SampleComponent, COMPONENTS],
