@@ -1,0 +1,254 @@
+<div id="wrap">
+  <!-- <div id="header">
+    <h1 class="header-logo">
+      <img src="../../assets/images/common/common-logo.png" alt="WISE CONVEY" />
+    </h1>
+    <a href="#" class="btn md circle default icon-only ml-auto">
+      <i class="icon common-user">마이페이지</i>
+    </a>
+    <a
+      href="#"
+      class="btn md circle default ml10"
+      onclick="wise.modalOpen('login-modal');"
+      >로그아웃</a
+    >
+  </div> -->
+  <div id="container">
+    <div id="lnb">
+      <a href="#" class="btn-control">컨트롤</a>
+      <div class="lnb-menu">
+        <h2>
+          <img
+            src="../../assets/images/common/lnb-logo.png"
+            alt="WISE CONVEY"
+          />
+        </h2>
+        <p class="user-name"><span class="name">김세영</span>님</p>
+        <ul class="menu-depth1">
+          <li>
+            <!-- 클릭하면 .active 추가 / .menu-depth2 자동으로 보여짐 -->
+            <a href="#" class="menu-depth1-link active">문서</a>
+            <ul class="menu-depth2">
+              <li>
+                <a href="#" class="menu-depth2-link">서식 등록하기</a>
+              </li>
+              <li>
+                <!-- 활성화 된 메뉴 -->
+                <a href="#" class="menu-depth2-link active"
+                  >기존 서식 수정하기</a
+                >
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">문서 및 항목 관리</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">고객 등록 요청</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <!-- 클릭하면 .active 추가 -->
+            <a href="#" class="menu-depth1-link">현황</a>
+            <ul class="menu-depth2">
+              <li>
+                <a href="#" class="menu-depth2-link">메뉴 1</a>
+              </li>
+              <li>
+                <!-- 활성화 된 메뉴 -->
+                <a href="#" class="menu-depth2-link active">메뉴 2</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">메뉴 3</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">메뉴 4</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="contents">
+      <!-- 서비스 -->
+      <div id="service-area">
+        <div class="basic-section">
+          <div class="search-area">
+            <div class="table table-search md">
+              <table>
+                <colgroup>
+                  <col width="20%" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">조회기간</th>
+                    <td>
+                      <div class="d-flex flex-align-center">
+                        <div
+                          class="input md line line-grey inline align-m"
+                          style="width: 140px"
+                        >
+                          <input type="date" date-data="2022.03.01" />
+                        </div>
+                        <div class="dash align-m">~</div>
+                        <div
+                          class="input md line line-grey inline align-m"
+                          style="width: 140px"
+                        >
+                          <input type="date" date-data="2022.03.01" />
+                        </div>
+                      </div>
+                      <div class="d-flex mt10">
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            checked="checked"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">오늘</span>
+                        </label>
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">1주</span>
+                        </label>
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">15일</span>
+                        </label>
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">1개월</span>
+                        </label>
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">3개월</span>
+                        </label>
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">6개월</span>
+                        </label>
+                        <label class="radio-tab sm">
+                          <input
+                            type="radio"
+                            class="radio-control-input"
+                            name="searchMonth"
+                          />
+                          <span class="radio-control-text">12개월</span>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">조회순서</th>
+                    <td>
+                      <label class="radio md">
+                        <input
+                          type="radio"
+                          class="radio-control-input"
+                          checked="checked"
+                          name="align"
+                        />
+                        <span class="radio-control-text">최신순</span>
+                      </label>
+                      <label class="radio md ml30">
+                        <input
+                          type="radio"
+                          class="radio-control-input"
+                          name="align"
+                        />
+                        <span class="radio-control-text">시작순</span>
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="search-result">
+            <div class="tab-header type1 md mb20">
+              <a href="#" class="tab-header-item active">데이터 변환</a>
+              <a href="#" class="tab-header-item">서식 등록 요청</a>
+            </div>
+            <!-- 테이블 -->
+            <div class="table table-list md layout-fixed">
+              <table>
+                <colgroup>
+                  <col />
+                  <col />
+                  <col />
+                  <col />
+                  <col />
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">요청 일시</th>
+                    <th scope="col">파일명</th>
+                    <th scope="col">문서 종류</th>
+                    <th scope="col">서식 회사명</th>
+                    <th scope="col" class="v-line">추가 설명</th>
+                    <th scope="col">요청 결과</th>
+                    <th scope="col">Remark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="align-c">2022.03.01</td>
+                    <td class="align-c">shiring_1231233.png</td>
+                    <td class="align-c">House B/L</td>
+                    <td class="align-c text-over">
+                      KOREA MARINE TRANSPORT CO.LTDKOREA MARINE TRANSPORT
+                      CO.LTDKOREA MARINE TRANSPORT CO.LTDKOREA MARINE TRANSPORT
+                      CO.LTDKOREA MARINE TRANSPORT CO.LTDKOREA MARINE TRANSPORT
+                      CO.LTDKOREA MARINE TRANSPORT CO.LTDKOREA MARINE TRANSPORT
+                      CO.LTDKOREA MARINE TRANSPORT CO.LTDKOREA MARINE TRANSPORT
+                      CO.LTDKOREA MARINE TRANSPORT CO.LTDKOREA MARINE TRANSPORT
+                      CO.LTD
+                    </td>
+                    <td class="align-c v-line">
+                      <a href="#" class="underline color-blue">상세</a>
+                    </td>
+                    <td class="align-c">등록완료</td>
+                    <td class="align-c">
+                      <a href="#" class="underline color-blue">상세</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pagination">
+              <a href="#" class="page-control">맨 처음</a>
+              <a href="#" class="page-control">이전</a>
+              <strong>1</strong>
+              <a href="#" class="page">2</a>
+              <a href="#" class="page-control">다음</a>
+              <a href="#" class="page-control">맨 끝</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<div id="lnb">
+  <a class="btn-control">컨트롤</a>
+  <div class="lnb-menu">
+    <h2>
+      <img src="../../assets/images/common/lnb-logo.png" alt="WISE CONVEY" />
+    </h2>
+    <p class="user-name">
+      <ng-template> <span class="name">이정은</span>님 </ng-template>
+    </p>
+    <ul class="menu-depth1">
+      <li>
+        <a class="menu-depth1-link">Document</a>
+        <ul class="menu-depth2">
+          <li>
+            <a
+              [routerLink]="['/convert']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >데이터변환</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/history']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >변환내역</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/basis/freetime']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >Freetime 정보</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/shipment']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >수입 선적현황</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- TODO : 기존 코드 -->
+<!-- <div
+  id="lnb"
+  [class.minify]="!(menuOpenYn$ | async)"
+  [@animation]="(menuOpenYn$ | async) ? 'opened' : 'closed'"
+>
+  <a
+    class="btn-control"
+    [class.active]="!(menuOpenYn$ | async)"
+    (click)="toggleMenuHandler()"
+    >컨트롤</a
+  >
+  <div class="lnb-menu">
+    <h2>
+      <img src="../../assets/images/common/lnb-logo.png" alt="WISE CONVEY" />
+    </h2>
+    <p class="user-name">
+      <ng-template [ngIf]="userName$ | async">
+        <span class="name">{{ userName$ | async }}</span
+        >님
+      </ng-template>
+    </p>
+    <ul class="menu-depth1">
+      <li>
+        <a
+          class="menu-depth1-link"
+          [class.active]="activatedMenu === 'document'"
+          (click)="openMenuHandler('document')"
+          >Document</a
+        >
+        <ul class="menu-depth2">
+          <li>
+            <a
+              [routerLink]="['/convert']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >데이터변환</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/history']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >변환내역</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/basis/freetime']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >Freetime 정보</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/shipment']"
+              routerLinkActive="active"
+              class="menu-depth2-link"
+              >수입 선적현황</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div> -->

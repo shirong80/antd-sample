@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+// 공통 모달
+.modal {
+  @include flex-all-center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  &.bg {
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1001;
+      background: rgba($color-point2, 0.3);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+  }
+  .modal-contents {
+    @include flex-column;
+    position: relative;
+    z-index: 1002;
+    -webkit-animation: zoom-in .35s cubic-bezier(0, 0, 0.58, 1);
+            animation: zoom-in .35s cubic-bezier(0, 0, 0.58, 1);
+    .common-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+  }
+  &.type1 {
+    .modal-contents {
+      background: $color-white;
+      border: {
+        radius: $lg-radius;
+        bottom: 1px solid #ebebeb;
+      }
+    }
+  }
+}
+
+// 로그인
+.modal--login {
+  padding: 50px 40px 40px;
+  width: 480px;
+  h1 {
+    img {
+      height: 24px;
+    }
+  }
+  ul {
+    margin-top: 20px;
+    li {
+      &:not(:last-child) {
+        margin-top: 10px;
+      }
+      &:last-child {
+        margin-top: 30px;
+      }
+    }
+  }
+}

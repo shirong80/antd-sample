@@ -1,0 +1,299 @@
+@charset "UTF-8";
+
+// 공통 전체 로딩
+.global-loading {
+  @include flex-all-center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1900;
+  &:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1901;
+    background: rgba($color-point2, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  .icon {
+    position: relative;
+    z-index: 1902;
+  }
+}
+
+// Tab
+.tab-header {
+  &.type1 {
+    position: relative;
+    font-size: 0;
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 2px solid $color-sub2;
+    }
+    .tab-header-item {
+      position: relative;
+      display: inline-block;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: {
+          bottom-style: solid;
+          bottom-width: 2px;
+        }
+        transition: border 0.5s;
+      }
+      &:not(.active) {
+        color: $color-sub4;
+        &:after {
+          border: {
+            bottom-color: $color-sub2;
+          }
+        }
+      }
+      &.active {
+        &:after {
+          border: {
+            bottom-color: $color-point1;
+          }
+        }
+      }
+    }
+  }
+  &.sm {
+    .tab-header-item {
+      @include font-sm-b;
+      padding: 10px;
+    }
+  }
+  &.md {
+    .tab-header-item {
+      @include font-md-b;
+      padding: 15px;
+    }
+  }
+  &.lg {
+    .tab-header-item {
+      @include font-lg-b;
+      padding: 20px;
+    }
+  }
+}
+
+// 텍스트 리스트
+.text-list {
+  line-height: 160%;
+  &.decimal {
+    padding-left: 14px;
+    > li {
+      list-style-type: decimal;
+      &.none {
+        list-style-type: none;
+      }
+    }
+  }
+  &.dot {
+    > li {
+      position: relative;
+      padding-left: 10px;
+      list-style-type: none;
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: $color-black;
+      }
+    }
+    &.color-sub4 {
+      > li {
+        &:before {
+          background: $color-sub4;
+        }
+      }
+    }
+    &.color-sub5 {
+      > li {
+        &:before {
+          background: $color-sub5;
+        }
+      }
+    }
+    &.color-sub6 {
+      > li {
+        &:before {
+          background: $color-sub6;
+        }
+      }
+    }
+  }
+  &.dashed {
+    > li {
+      position: relative;
+      padding-left: 10px;
+      list-style-type: none;
+      &:before {
+        content: "-";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  &.ref {
+    > li {
+      position: relative;
+      padding-left: 18px;
+      list-style-type: none;
+      &:before {
+        content: "\203B";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  &.lg {
+    @include font-lg;
+    &.dot {
+      li {
+        &:before {
+          top: 10px;
+        }
+      }
+    }
+    li + li {
+      margin-top: 3px;
+    }
+  }
+  &.md {
+    @include font-md;
+    &.dot {
+      li {
+        &:before {
+          top: 10px;
+        }
+      }
+    }
+    li + li {
+      margin-top: 3px;
+    }
+  }
+  &.sm {
+    @include font-sm;
+    &.dot {
+      li {
+        &:before {
+          top: 8px;
+        }
+      }
+    }
+    li + li {
+      margin-top: 3px;
+    }
+  }
+  &.xs {
+    @include font-xs;
+    &.dot {
+      li {
+        &:before {
+          top: 8px;
+        }
+      }
+    }
+    li + li {
+      margin-top: 3px;
+    }
+  }
+  &.space5 {
+    > li + li {
+      margin-top: 5px;
+    }
+  }
+  &.space10 {
+    > li + li {
+      margin-top: 10px;
+    }
+  }
+  &.space20 {
+    > li + li {
+      margin-top: 20px;
+    }
+  }
+  li {
+    &.none {
+      &:before {
+        content: none;
+      }
+    }
+    &.none-pd {
+      padding-left: 0;
+      &:before {
+        content: none;
+      }
+    }
+    + li {
+      margin-top: 5px;
+    }
+  }
+}
+
+// pagination
+.pagination {
+  @include flex-all-center;
+  margin-top: 20px;
+  a {
+    @include font-md;
+    border: 1px solid $color-sub2;
+    color: $color-sub4;
+  }
+  button {
+    @include font-md;
+    border: 1px solid $color-sub2;
+    color: $color-sub4;
+    &:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  }
+  strong {
+    @include font-md-b;
+    color: $color-point1;
+    border: 1px solid $color-point1;
+  }
+  .page-control {
+    padding: 5px 10px;
+  }
+  .page,
+  strong {
+    padding: 5px 0;
+    flex: 0 0 30px;
+    text-align: center;
+  }
+  a,
+  strong {
+    margin: 0 5px;
+    border-radius: 3px;
+  }
+}
+
+// dash
+.dash {
+  display: inline-block;
+  margin: 0 10px;
+}

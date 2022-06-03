@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  text-indent: -9999em;
+  overflow: hidden;
+  background: {
+    position: 50% 50%;
+    repeat: no-repeat;
+  }
+  &.xs {
+
+  }
+  &.sm {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    &.view {
+      background: {
+       image: url($icons-image-url + 'ico-view.png');
+       size: 16px auto;
+      }
+    }
+    &.table-add {
+      background: {
+       image: url($icons-image-url + 'ico-table-add.png');
+       size: 16px auto;
+      }
+    }
+    &.table-delete {
+      background: {
+       image: url($icons-image-url + 'ico-table-delete.png');
+       size: 16px auto;
+      }
+    }
+  }
+  &.md {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+  }
+  &.lg {
+    &.stack {
+      width: 80px;
+      height: 80px;
+      background: {
+       image: url($icons-image-url + 'ico-stack-large.png');
+       size: auto 80px;
+      }
+    }
+    &.loading {
+      width: 80px;
+      height: 80px;
+      border: {
+        top: 4px solid $color-sub3;
+        right: 4px solid $color-point1;
+        bottom: 4px solid $color-point1;
+        left: 4px solid $color-point1;
+        radius: 50%;
+      }
+      -webkit-animation: icon-rotate  1s infinite linear;
+              animation: icon-rotate  1s infinite linear;
+    }
+  }
+  &.common {
+    &-calendar {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      background: {
+       image: url($common-image-url + 'ico-common-calendar.png');
+       size: auto 16px;
+      }
+    }
+    &-input-delete {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      background: {
+       image: url($common-image-url + 'ico-common-input-delete.png');
+       size: 16px auto;
+      }
+    }
+    &-close {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      background: {
+       image: url($common-image-url + 'ico-common-close-default.png');
+       size: 16px auto;
+      }
+      &:hover {
+        background: {
+         image: url($common-image-url + 'ico-common-close-active.png');
+         size: 16px auto;
+        }
+      }
+    }
+    &-user {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      background: {
+       image: url($common-image-url + 'ico-common-user.png');
+       size: 16px auto;
+      }
+    }
+  }
+}

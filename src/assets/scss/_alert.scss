@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+// 공통 얼럿 메세지
+.alert {
+  @include flex-all-center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  &.bg {
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2001;
+      background: rgba($color-point2, 0.3);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+  }
+  .alert-contents {
+    @include flex-column;
+    position: relative;
+    z-index: 2002;
+    border-radius: $lg-radius;
+    background: $color-white;
+    height: 240px;
+    width: 380px;
+    overflow: hidden;
+    -webkit-animation: zoom-in .35s cubic-bezier(0, 0, 0.58, 1);
+            animation: zoom-in .35s cubic-bezier(0, 0, 0.58, 1);
+  }
+  .alert-msg-area {
+    @include flex-all-center;
+    @include font-md-b;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    flex: 1 1 auto;
+    color: $color-point2;
+    text-align: center;
+    i + p {
+      margin-top: 10px;
+    }
+  }
+  .alert-button-area {
+    @include flex-align-center;
+    .btn {
+      flex: 1 1;
+      &:hover {
+        filter: contrast(1.2);
+      }
+    }
+  }
+  .icon-alert-fail {
+    display: block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid $color-point2;
+    -webkit-animation: flipInY 1s;
+            animation: flipInY 1s;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 34px;
+      background: $color-point2;
+    }
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+  .icon-alert-success {
+    display: block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid $color-point2;
+    -webkit-animation: flipInY 1s;
+            animation: flipInY 1s;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: $color-point2;
+    }
+    &:before {
+      width: 2px;
+      height: 30px;
+      transform: translate(3px, -15px) rotate(50deg);
+    }
+    &:after {
+      width: 2px;
+      height: 12px;
+      transform: translate(-12px, -1px) rotate(-45deg);
+    }
+  }
+}

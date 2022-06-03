@@ -1,0 +1,436 @@
+<div id="wrap">
+  <!-- <div id="header">
+    <h1 class="header-logo">
+      <img src="../../assets/images/common/common-logo.png" alt="WISE CONVEY" />
+    </h1>
+    <a href="#" class="btn md circle default icon-only ml-auto"
+      ><i class="icon common-user">마이페이지</i></a
+    >
+    <a
+      href="#"
+      class="btn md circle default ml10"
+      onclick="wise.modalOpen('login-modal');"
+      >로그아웃</a
+    >
+  </div> -->
+  <div id="container">
+    <div id="lnb">
+      <a href="#" class="btn-control">컨트롤</a>
+      <div class="lnb-menu">
+        <h2>
+          <img
+            src="../../assets/images/common/lnb-logo.png"
+            alt="WISE CONVEY"
+          />
+        </h2>
+        <p class="user-name"><span class="name">김세영</span>님</p>
+        <ul class="menu-depth1">
+          <li>
+            <a href="#" class="menu-depth1-link active">문서</a>
+            <ul class="menu-depth2">
+              <li>
+                <a href="#" class="menu-depth2-link">서식 등록하기</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link active"
+                  >기존 서식 수정하기</a
+                >
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">문서 및 항목 관리</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">고객 등록 요청</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="menu-depth1-link">현황</a>
+            <ul class="menu-depth2">
+              <li>
+                <a href="#" class="menu-depth2-link">메뉴 1</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link active">메뉴 2</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">메뉴 3</a>
+              </li>
+              <li>
+                <a href="#" class="menu-depth2-link">메뉴 4</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="contents">
+      <!-- 서비스 -->
+      <div id="service-area">
+        <div class="main-section">
+          <ul class="service-form main-form">
+            <li>
+              <!-- 파일 선택 -->
+              <div class="input-file lg line2 line-point1">
+                <label class="input-file-label">
+                  파일 선택하기
+                  <input type="file" />
+                </label>
+              </div>
+            </li>
+            <li class="d-flex mt20">
+              <!-- 회사 검색 -->
+              <div
+                class="autocomplete-input md line2 line-point1 search flex-fill"
+              >
+                <input type="text" placeholder="회사 검색" />
+                <a href="#" class="icon common-input-delete">삭제</a>
+              </div>
+              <!-- 자동 완성 검색 결과 -->
+              <div
+                class="autocomplete-result md round"
+                style="top: 42px; width: 100%; display: none"
+              >
+                <ul>
+                  <li>
+                    <a href="#" class="item active">WISE CONVEY</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">NAVER CORPERATION</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">WISE CONVEY</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">NAVER CORPERATION</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">WISE CONVEY</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">NAVER CORPERATION</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">WISE CONVEY</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">NAVER CORPERATION</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- 문서 종류 선택 -->
+              <div class="autocomplete-input md line2 line-point1 ml10">
+                <input type="text" placeholder="문서 종류 선택" />
+                <a href="#" class="icon common-input-delete">삭제</a>
+              </div>
+              <!-- 자동 완성 검색 결과 -->
+              <div
+                class="autocomplete-result md round"
+                style="top: 42px; width: 181px; right: 0; display: none"
+              >
+                <ul>
+                  <li>
+                    <a href="#" class="item active">House B/L</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <!-- 문서 서식 선택 -->
+              <div class="autocomplete-input md line2 line-point1">
+                <input type="text" placeholder="문서 서식 선택" />
+                <a href="#" class="icon common-input-delete">삭제</a>
+              </div>
+              <!-- 자동 완성 검색 결과 -->
+              <div
+                class="autocomplete-result md round"
+                style="top: 42px; left: 0; right: 0"
+              >
+                <ul>
+                  <li>
+                    <a href="#" class="item">문서 서식 선택</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item">
+                      <div class="autocomplete-document-item">
+                        <span class="region">CN</span>
+                        <span class="type">H-B/K</span>
+                        <span class="doc-type"
+                          >KOREA MARINE TRANSPORT CO.LTD</span
+                        >
+                        <span class="name">KOREA MARINE TRANSPORT CO.LTD</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="item active">
+                      <div class="autocomplete-document-item">
+                        <span class="region">CN</span>
+                        <span class="type">H-B/K</span>
+                        <span class="doc-type"
+                          >KOREA MARINE TRANSPORT CO.LTD</span
+                        >
+                        <span class="name">KOREA MARINE TRANSPORT CO.LTD</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="d-flex">
+              <a href="#" class="btn md default icon-only" title="크게보기"
+                ><i class="icon sm view">크게보기</i></a
+              >
+              <a href="#" class="btn md secondary flex-fill ml10"
+                >데이터 변환하기</a
+              >
+            </li>
+            <li class="file-area">
+              <div class="d-flex flex-column h-100">
+                <!-- 파일 업로드 전 보여짐 -->
+                <div class="before-file">
+                  <i class="icon lg stack"></i>
+                  <p class="color-point1 mt20">
+                    TIF, JPG, PDF, PNG 파일을 업로드 해주세요.
+                  </p>
+                </div>
+                <!-- 파일 업로드 로딩 중 -->
+                <div class="before-loading">
+                  <i class="icon lg loading"></i>
+                </div>
+                <!-- 파일 업로드 후 -->
+                <div class="import-area">
+                  <!-- 파일 표시되는 영역 -->
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <ul class="service-form sub-form">
+            <li class="form-header">
+              <label for="system" class="color-white font-md-b mr10"
+                >연결 대상</label
+              >
+              <!-- 시스템 선택 -->
+              <div class="autocomplete-input md line2 line-point1 flex-fill">
+                <input type="text" placeholder="시스템 선택" id="system" />
+                <a href="#" class="icon common-input-delete">삭제</a>
+              </div>
+              <!-- 자동 완성 검색 결과 -->
+              <div
+                class="autocomplete-result md round"
+                style="top: 52px; left: 90px; right: 105px"
+              >
+                <ul>
+                  <li>
+                    <a href="#" class="item">시스템 선택</a>
+                  </li>
+                  <li>
+                    <a href="#" class="item active"
+                      >YUHAN TECHNOS-G1-H.B/K등록(해상)</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <button class="btn md default ml10" type="submit">전송</button>
+            </li>
+            <li class="form-contents-area">
+              <!-- 링크 아이템 반복 -->
+              <div class="linked-item not-copy">
+                <dl>
+                  <dt>1. House B/L No.</dt>
+                  <dd>KR.123984091829389DK</dd>
+                  <dd class="mt10">
+                    <ul class="text-list md dashed">
+                      <li>
+                        <strong>Master B/L (Ocean Liner) : </strong>CK LINE
+                      </li>
+                      <li><strong>Arrival Date : </strong>2022-02-01</li>
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
+              <!-- 링크 아이템 반복 -->
+              <div class="linked-item">
+                <dl>
+                  <dt>2. Booking No.</dt>
+                  <dd>KR.123984091829389DK</dd>
+                </dl>
+                <a href="#" class="btn sm light line line-point1">복사</a>
+              </div>
+              <!-- 링크 아이템 반복 -->
+              <div class="linked-item">
+                <dl>
+                  <dt>3. Container Information</dt>
+                  <dd>
+                    MAGU1923892810 / SIF123982390/ 20GP / 250CTNS / 293.829KGS /
+                    29.3892CBM
+                  </dd>
+                  <dd>
+                    MAGU1923892810 / SIF123982390/ 20GP / 250CTNS / 293.829KGS /
+                    29.3892CBM
+                  </dd>
+                </dl>
+                <a href="#" class="btn sm light line line-point1">복사</a>
+              </div>
+              <!-- 링크 아이템 반복 -->
+              <!-- 복사 버튼 없이 가로 풀로 쓰고 싶을때는 .not-copy 추가 -->
+              <div class="linked-item not-copy">
+                <dl>
+                  <dt>20. Container Information</dt>
+                  <dd>
+                    <p class="color-sub5 font-sm mb10">
+                      Seal 넘버를 선택하시거나 직접 입력해 주세요.
+                    </p>
+                    <div
+                      class="table md vertical-line thead-line layout-text layout-responsive"
+                    >
+                      <table>
+                        <caption>
+                          Container Information
+                        </caption>
+                        <colgroup>
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                          <col />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th
+                              scope="col"
+                              class="align-c hide-line"
+                              rowspan="2"
+                            >
+                              <a href="#" class="icon sm table-add">추가</a>
+                            </th>
+                            <th scope="col" class="align-c" rowspan="2">
+                              CNTR No.
+                            </th>
+                            <th scope="col" class="align-c" rowspan="2">
+                              Seal No.
+                            </th>
+                            <th
+                              scope="col"
+                              class="align-c hide-line"
+                              rowspan="2"
+                            >
+                              Size
+                            </th>
+                            <th scope="col" class="align-c" rowspan="2">
+                              Type
+                            </th>
+                            <th
+                              scope="col"
+                              class="align-c hide-line"
+                              rowspan="2"
+                            >
+                              PKG
+                            </th>
+                            <th scope="col" class="align-c" rowspan="2">
+                              UNIT
+                            </th>
+                            <th scope="col" class="align-c" colspan="2">
+                              Gross Weight
+                            </th>
+                            <th scope="col" class="align-c" colspan="2">
+                              Measurement
+                            </th>
+                            <th scope="col" class="align-c" rowspan="2">
+                              Seal No.(2)
+                            </th>
+                          </tr>
+                          <tr>
+                            <th scope="col" class="align-c hide-line">
+                              WEIGHT
+                            </th>
+                            <th scope="col" class="align-c">UNIT</th>
+                            <th scope="col" class="align-c hide-line">
+                              WEIGHT
+                            </th>
+                            <th scope="col" class="align-c">UNIT</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="align-c hide-line"></td>
+                            <td class="align-c">CAIU9642620</td>
+                            <td class="align-c"></td>
+                            <td class="align-c hide-line">40</td>
+                            <td class="align-c">HC</td>
+                            <td class="align-c hide-line">124</td>
+                            <td class="align-c">PK</td>
+                            <td class="align-c hide-line">4113.334</td>
+                            <td class="align-c">KGS</td>
+                            <td class="align-c hide-line">68.000</td>
+                            <td class="align-c">CBM</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td class="align-c hide-line"></td>
+                            <td class="align-c">CAIU9642620</td>
+                            <td class="align-c"></td>
+                            <td class="align-c hide-line">40</td>
+                            <td class="align-c">HC</td>
+                            <td class="align-c hide-line">124</td>
+                            <td class="align-c">PK</td>
+                            <td class="align-c hide-line">4113.334</td>
+                            <td class="align-c">KGS</td>
+                            <td class="align-c hide-line">68.000</td>
+                            <td class="align-c">CBM</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td class="align-c hide-line"></td>
+                            <td class="align-c">CAIU9642620</td>
+                            <td class="align-c"></td>
+                            <td class="align-c hide-line">40</td>
+                            <td class="align-c">HC</td>
+                            <td class="align-c hide-line">124</td>
+                            <td class="align-c">PK</td>
+                            <td class="align-c hide-line">4113.334</td>
+                            <td class="align-c">KGS</td>
+                            <td class="align-c hide-line">68.000</td>
+                            <td class="align-c">CBM</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td class="align-c hide-line"></td>
+                            <td class="align-c">CAIU9642620</td>
+                            <td class="align-c"></td>
+                            <td class="align-c hide-line">40</td>
+                            <td class="align-c">HC</td>
+                            <td class="align-c hide-line">124</td>
+                            <td class="align-c">PK</td>
+                            <td class="align-c hide-line">4113.334</td>
+                            <td class="align-c">KGS</td>
+                            <td class="align-c hide-line">68.000</td>
+                            <td class="align-c">CBM</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+              <!-- 파일 업로드 로딩 중 -->
+              <div class="before-loading">
+                <i class="icon lg loading"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+// 노토산스
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: local('NotoSansKR-Thin'), /* computer */
+  url('../fonts/NotoSansKR-Thin.woff2') format('woff2'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Thin.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Thin.otf') format('opentype'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: local('NotoSansKR-Light'), /* computer */
+  url('../fonts/NotoSansKR-Light.woff2') format('woff2'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Light.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Light.otf') format('opentype'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: local('NotoSansKR-Regular'), /* computer */
+  url('../fonts/NotoSansKR-Regular.woff2') format('woff2'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Regular.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Regular.otf') format('opentype'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: local('NotoSansKR-Medium'), /* computer */
+  url('../fonts/NotoSansKR-Medium.woff2') format('woff2'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Medium.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Medium.otf') format('opentype'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: local('NotoSansKR-Bold'), /* computer */
+  url('../fonts/NotoSansKR-Bold.woff2') format('woff2'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Bold.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Bold.otf') format('opentype'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 900;
+  src: local('NotoSansKR-Black'), /* computer */
+  url('../fonts/NotoSansKR-Black.woff2') format('woff2'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Black.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/NotoSansKR-Black.otf') format('opentype'); /* Safari, Android, iOS */
+}
