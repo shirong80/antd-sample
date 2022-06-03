@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+// 메인 랜딩
+.main-landing {
+  @include flex-all-center;
+  height: 100%;
+  img {
+    width: 793px;
+    height: auto;
+  }
+  .btn {
+    position: absolute;
+    width: 220px;
+    top: 175px;
+    right: 122px;
+  }
+}
+
+// 서비스 페이지
+#service-area {
+  display: flex;
+  height: 100%;
+  .basic-section {
+    @include flex-column;
+    width: 100%;
+    .search-area {
+      margin-bottom: 30px;
+    }
+    .search-result {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      background: $color-white;
+      padding: 30px;
+    }
+  }
+  .main-section,
+  .sub-section {
+    @include flex-column;
+  }
+  .main-section {
+    display: flex;
+    flex: 1 1;
+    overflow-x: hidden;
+  }
+  .sub-section {
+    flex: 1 1;
+    margin-left: 30px;
+    overflow-x: hidden;
+  }
+  .main-thirds-section,
+  .sub-thirds-section {
+    @include flex-column;
+  }
+  .main-thirds-section {
+    display: flex;
+    flex: 2 1 0;
+    overflow-x: hidden;
+    .search-area {
+      margin-bottom: 30px;
+    }
+    .search-result {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      background: $color-white;
+      padding: 30px;
+    }
+  }
+  .sub-thirds-section {
+    flex: 1 1 0;
+    margin-left: 30px;
+    overflow-x: hidden;
+  }
+  .service-form {
+    @include flex-column;
+    height: 100%;
+    > li {
+      position: relative;
+      + li {
+        margin-top: 10px;
+      }
+    }
+  }
+  .file-area {
+    border: 1px solid $color-sub2;
+    background: $color-white;
+  }
+  .file-area,
+  .form-contents-area {
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+  .import-area {
+    canvas,
+    img {
+      width: 100%;
+      vertical-align: top;
+    }
+  }
+  .before-file,
+  .before-loading {
+    @include flex-all-center;
+    flex-direction: column;
+    height: 100%;
+    background: $color-white;
+  }
+  .sub-form {
+    .form-header {
+      @include flex-align-center;
+      position: relative;
+      border-radius: $md-radius;
+      padding: 10px 30px;
+      background: $color-point2;
+    }
+  }
+  // 복사 아이템
+  .linked-item {
+    position: relative;
+    background: $color-white;
+    padding: 30px;
+    border: {
+      width: 1px;
+      style: solid;
+      color: transparent;
+    }
+    + .linked-item {
+      margin-top: 10px;
+    }
+    .btn {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+    }
+    &:hover {
+      border-color: $color-point1;
+    }
+    dt {
+      @include font-lg-b;
+      color: $color-black;
+      margin-bottom: 20px;
+    }
+    dd {
+      @include font-sm;
+      + dd {
+        margin-top: 5px;
+      }
+    }
+    &:not(.not-copy) {
+      dl {
+        padding-right: 80px;
+      }
+    }
+  }
+  .form-control {
+    @include flex-align-center;
+    .error-no {
+      @include inline-flex-all-center;
+      @include font-md-b;
+      color: $color-red;
+      background: $color-white;
+      border-radius: $md-radius;
+      border: 1px solid $color-sub2;
+      height: 40px;
+      flex: 0 0 25%;
+    }
+    .btn.light {
+      flex: 0 0 25%;
+    }
+    .btn.danger {
+      flex: 0 0 25%;
+    }
+  }
+  // 폼 수정 아이템
+  .form-edit-item {
+    position: relative;
+    background: $color-white;
+    padding: 30px;
+    border: 1px solid $color-sub2;
+    + .form-edit-item {
+      margin-top: 10px;
+    }
+    dt {
+      @include font-lg-b;
+      color: $color-black;
+      margin-bottom: 20px;
+    }
+    dd {
+      + dd {
+        margin-top: 10px;
+      }
+    }
+    .table {
+      &.valid-error {
+        border: 1px solid $color-red;
+      }
+    }
+    .form-label {
+      @include font-xs;
+      color: $color-point1;
+      margin-bottom: 5px;
+      padding-left: 5px;
+      display: block;
+    }
+  }
+}
+
+.pdf-viewer {
+  height: 100vh;
+  max-width: 873px;
+  > div {
+    *::-moz-selection {
+      background: rgba(#ff0000, 0.9);
+      color: #000;
+    }
+    *::selection {
+      background: rgba(#ff0000, 0.9);
+      color: #000;
+    }
+  }
+}

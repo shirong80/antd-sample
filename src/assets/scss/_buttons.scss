@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+.btn {
+  @include flex-all-center;
+  padding: 0 20px;
+  border: {
+    width: 0;
+    style: solid;
+    color: transparent;
+  }
+  &.inline {
+    @include inline-flex-all-center;
+  }
+  &.sm {
+    @include font-sm-b;
+    height: 30px;
+    &.round {
+      border-radius: $sm-radius;
+    }
+    &.circle {
+      border-radius: 15px;
+    }
+    &.icon-only {
+      flex: 0 0 30px;
+      width: 30px;
+    }
+  }
+  &.md {
+    @include font-md-b;
+    height: 40px;
+    &.round {
+      border-radius: $md-radius;
+    }
+    &.circle {
+      border-radius: 20px;
+    }
+    &.icon-only {
+      flex: 0 0 40px;
+      width: 40px;
+    }
+  }
+  &.lg {
+    @include font-lg-b;
+    height: 60px;
+    &.round {
+      border-radius: $lg-radius;
+    }
+    &.circle {
+      border-radius: 30px;
+    }
+    &.icon-only {
+      flex: 0 0 60px;
+      width: 60px;
+    }
+  }
+  &.line {
+    border-width: 1px;
+  }
+  &.line-grey {
+    border-color: $color-sub2;
+  }
+  &.line-point1 {
+    border-color: $color-point1;
+  }
+  &.light {
+    color: $color-point1;
+    background: $color-white;
+    &:hover {
+      color: $color-white;
+      background: $color-point1;
+    }
+  }
+  &.danger {
+    color: $color-red;
+    background: $color-white;
+    &:hover {
+      color: $color-white;
+      background: $color-red;
+    }
+  }
+  &.shadow {
+    @include box-shadow(0, 2px, 8px, rgba($color-black, .08));
+  }
+  &.default {
+    color: $color-white;
+    background: $color-point1;
+  }
+  &.secondary {
+    color: $color-white;
+    background: $color-point2;
+  }
+  &:disabled {
+    color: $color-sub6;
+    background: $color-sub2;
+    cursor: not-allowed;
+    &:hover {
+      color: $color-sub6;
+      background: $color-sub2;
+    }
+  }
+}

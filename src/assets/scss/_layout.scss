@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+#wrap {
+  @include flex-column;
+  height: 100vh;
+}
+#header {
+  @include flex-align-center;
+  @include box-shadow(0px, 5px, 5px, rgba($color-black, .08));
+  position: relative;
+  background: $color-white;
+  z-index: 1;
+  height: 60px;
+  padding: 0 30px;
+  .header-logo {
+    img {
+      height: 24px;
+    }
+  }
+}
+#container {
+  display: flex;
+  position: relative;
+  flex: 1 1 auto;
+}
+#lnb {
+  @include flex-column;
+  @include box-shadow(5px, 0px, 5px, rgba($color-black, .08));
+  background: $color-white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 240px;
+  .btn-control {
+    @include box-shadow(5px, 5px, 5px, rgba($color-black, .08));
+    position: absolute;
+    top: 60px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: $color-point1;
+    border-radius: 50%;
+    text-indent: -9999em;
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 8px;
+      background: $color-white;
+      transition-duration: 550ms;
+    }
+    &:before {
+      right: 14px;
+      bottom: 50%;
+      margin-bottom: -2px;
+      transform: rotate(-135deg);
+    }
+    &:after {
+      right: 14px;
+      top: 50%;
+      margin-top: -2px;
+      transform: rotate(-45deg);
+    }
+    &.active {
+      &:before {
+        right: 12px;
+        bottom: 50%;
+        margin-bottom: -2px;
+        transform: rotate(-45deg);
+      }
+      &:after {
+        right: 12px;
+        top: 50%;
+        margin-top: -2px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    img {
+      width: 50px;
+    }
+  }
+  .user-name {
+    @include font-md-b;
+    margin-top: 20px;
+    text-align: center;
+    color: $color-black;
+    .name {
+      margin-right: 5px;
+    }
+  }
+  .lnb-menu {
+    flex: 1 1 auto;
+    padding: 50px 10px;
+    overflow-y: auto;
+    .menu-depth1 {
+      margin-top: 40px;
+    }
+    .menu-depth1-link {
+      @include flex-all-center;
+      @include font-lg-b;
+      color: $color-point1;
+      height: 50px;
+      &.active {
+        background: $color-white;
+        border-radius: $md-radius;
+        position: relative;
+        z-index: 1;
+        @include box-shadow(0, 0, 6px, rgba($color-black, .18));
+        + .menu-depth2 {
+          display: block;
+        }
+      }
+    }
+    .menu-depth2 {
+      position: relative;
+      z-index: 0;
+      display: none;
+      border-radius: $md-radius;
+      margin-top: -15px;
+      padding-top: 20px;
+      background: $color-white;
+      @include box-shadow(0, 0, 6px, rgba($color-black, .18));
+      .menu-depth2-link {
+        @include flex-all-center;
+        @include font-md;
+        color: $color-point1;
+        height: 40px;
+        &.active,
+        &:hover {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  &.minify {
+    left: -220px;
+    + #contents {
+      margin-left: 20px;
+    }
+  }
+}
+#contents {
+  flex: 1 1 auto;
+  background: $color-sub1;
+  margin-left: 240px;
+  padding: 50px;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}

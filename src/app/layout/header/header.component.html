@@ -1,0 +1,27 @@
+<div id="header">
+  <h1 class="header-logo">
+    <a [routerLink]="['/']">
+      <img src="../../assets/images/common/common-logo.png" alt="WISE CONVEY" />
+    </a>
+  </h1>
+  <!-- <a *ngIf="logInYn$ | async" class="btn md circle default icon-only ml-auto"
+    ><i class="icon common-user">마이페이지</i></a
+  > -->
+  <a class="btn md circle default icon-only ml-auto">
+    <i class="icon common-user">마이페이지</i>
+  </a>
+  <!-- <a
+    class="btn md circle default ml10"
+    *ngIf="logInYn$ | async"
+    (click)="signOutHandler()"
+    >로그아웃</a
+  > -->
+  <a class="btn md circle default ml10">로그아웃</a>
+  <!-- <a
+    class="btn md circle default ml-auto"
+    *ngIf="!(logInYn$ | async)"
+    (click)="openSignInHandler()"
+    >로그인</a
+  > -->
+  <a class="btn md circle default ml-auto">로그인</a>
+</div>

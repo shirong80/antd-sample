@@ -1,0 +1,615 @@
+@charset "UTF-8";
+
+// color setting
+$color-point1: #0b6277;
+$color-point2: #72b6c6;
+$color-white: #fff;
+$color-black: #000;
+$color-sub1: #f5f5f5;
+$color-sub2: #e0e0e0;
+$color-sub3: #ccc;
+$color-sub4: #999;
+$color-sub5: #888;
+$color-sub6: #666;
+$color-sub7: #333;
+$color-warning: #FD3995;
+$color-danger: #FF682C;
+$color-blue: #0080FF;
+$color-red: #FF0000;
+
+// local image url setting
+$base-image-url: "../images/img/";
+$common-image-url: "../images/common/";
+$icons-image-url: "../images/icons/";
+$temp-image-url: "../images/temp/";
+
+// important
+$i: unquote("!important");
+
+// default radius
+$lg-radius: 12px;
+$md-radius: 10px;
+$sm-radius: 8px;
+$xs-radius: 4px;
+
+// default box-shadow
+$lg-shadow: 0 20px 28px 0 rgba($color-black, 0.04);
+$md-shadow: 0 10px 14px 0 rgba($color-black, 0.08);
+$sm-shadow: 0 3px 6px 0 rgba($color-black, 0.08);
+
+/// 폰트 설정과 관련된 @mixin
+/// size, weight를 함께 표시한다.
+@mixin font-2xl-b {
+  font: {
+    size: 32px;
+    weight: 500;
+  }
+}
+@mixin font-2xl {
+  font: {
+    size: 32px;
+    weight: 400;
+  }
+}
+@mixin font-xl-b {
+  font: {
+    size: 20px;
+    weight: 500;
+  }
+}
+@mixin font-xl {
+  font: {
+    size: 20px;
+    weight: 400;
+  }
+}
+@mixin font-lg-b {
+  font: {
+    size: 16px;
+    weight: 500;
+  }
+}
+@mixin font-lg {
+  font: {
+    size: 16px;
+    weight: 400;
+  }
+}
+@mixin font-md-b {
+  font: {
+    size: 14px;
+    weight: 500;
+  }
+}
+@mixin font-md {
+  font: {
+    size: 14px;
+    weight: 400;
+  }
+}
+@mixin font-sm-b {
+  font: {
+    size: 13px;
+    weight: 500;
+  }
+}
+@mixin font-sm {
+  font: {
+    size: 13px;
+    weight: 400;
+  }
+}
+@mixin font-xs-b {
+  font: {
+    size: 12px;
+    weight: 500;
+  }
+}
+@mixin font-xs {
+  font: {
+    size: 12px;
+    weight: 400;
+  }
+}
+@mixin font-xxs-b {
+  font: {
+    size: 10px;
+    weight: 500;
+  }
+}
+@mixin font-xxs {
+  font: {
+    size: 10px;
+    weight: 400;
+  }
+}
+
+/// Mixin Tool
+/// 글로벌로 사용되는 @mixin을 포함한다.
+/// 사용방법은 @include abc
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    table-layout: fixed;
+    clear: both;
+  }
+}
+/// 한줄 말줄임 @mixin
+@mixin text-over {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/// 종방향 스크롤 @mixin
+@mixin overflow-y {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+/// 횡방향 스크롤 @mixin
+@mixin overflow-x {
+  overflow-y: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/// flex 관련 @mixin
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin inline-flex-align-center {
+  display: inline-flex;
+  align-items: center;
+}
+@mixin inline-flex-all-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin inline-flex-justify-center {
+  display: inline-flex;
+  justify-content: center;
+}
+@mixin flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+@mixin flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin flex-between-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin flex-between-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+@mixin flex-between-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+@mixin flex-around-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+@mixin inline-flex-column {
+  display: inline-flex;
+  flex-direction: column;
+}
+/// 백그라운드 커버 형태 @mixin
+@mixin bg-cover {
+  background: {
+    position: 50% 50%;
+    size: cover;
+    repeat: no-repeat;
+  }
+}
+@mixin linear-gradient($solid:true) {
+  @if ($solid) {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  } @else {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  }
+}
+/// 어려줄 말줄임 @mixin
+@mixin line-clamp($line-num) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-num;
+  -webkit-box-orient: vertical;
+}
+/// box-shade @mixin
+@mixin box-shadow($left, $top, $blur, $color) {
+  box-shadow: $left $top $blur $color;
+}
+/// 이미지 가운데 정렬 @mixin
+@mixin image-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+/// 부모의 위치 대비 좌우 가운데 정렬 멀티 @mixin
+/// 사용방법 @include center(true, false)
+@mixin position-center($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  } @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+
+  } @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+/// 컨텐츠 스크롤
+@mixin contents-scroll-bar {
+  &::-webkit-scrollbar-thumb {
+    background: $color-sub2;
+    border: 0 none transparent;
+    border-radius: 2px;
+    &:hover {
+      background: $color-sub3;
+    }
+    &:active {
+      background: $color-sub3;
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: $color-white;
+    border: 0 none transparent;
+    border-radius: 2px;
+    &:hover {
+      background: $color-white;
+    }
+    &:active {
+      background: $color-white;
+    }
+  }
+}
+// animation
+@-webkit-keyframes wobble-hor-top {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-12px) rotate(4deg);
+  }
+  30% {
+    transform: translateX(7px) rotate(-4deg);
+  }
+  45% {
+    transform: translateX(-7px) rotate(2.6deg);
+  }
+  60% {
+    transform: translateX(3px) rotate(-1.4deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(0.2deg);
+  }
+}
+@keyframes wobble-hor-top {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-12px) rotate(4deg);
+  }
+  30% {
+    transform: translateX(7px) rotate(-4deg);
+  }
+  45% {
+    transform: translateX(-7px) rotate(2.6deg);
+  }
+  60% {
+    transform: translateX(3px) rotate(-1.4deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(0.2deg);
+  }
+}
+@-webkit-keyframes bounce-top {
+  0% {
+    transform: translateY(-16px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-12px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(-4px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateY(-2px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+@keyframes bounce-top {
+  0% {
+    transform: translateY(-16px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-12px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(-4px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateY(-2px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0px);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes icon-rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360);
+  }
+}
+@keyframes icon-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+// dummy animation
+@-webkit-keyframes dummy-animation {
+  0% {
+    background-position: -650px 0;
+  }
+  100% {
+    background-position: 650px 0;
+  }
+}
+@keyframes dummy-animation {
+  0% {
+    background-position: -650px 0;
+  }
+  100% {
+    background-position: 650px 0;
+  }
+}
+@-webkit-keyframes flipInX {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+@-webkit-keyframes flipInY {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+@keyframes flipInY {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+@-webkit-keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
