@@ -78,6 +78,7 @@ export class NzRadioGroupComponent
     this.nzRadioService.selected$
       .pipe(takeUntil(this.destroy$))
       .subscribe((value) => {
+        // 동기화 호출.
         if (this.value !== value) {
           this.value = value;
           this.onChange(this.value);
@@ -86,6 +87,7 @@ export class NzRadioGroupComponent
     this.nzRadioService.touched$
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
+        // 비동기화 호출. -> 해당 콜백을 Micro task queue 에 등록하기 위하여?
         Promise.resolve().then(() => this.onTouched());
       });
 
