@@ -46,10 +46,10 @@ export type NzRadioButtonStyle = 'outline' | 'solid';
   ],
   host: {
     class: 'ant-radio-group',
-    '[class.ant-radio-group-large]': `nzSize === 'large'`,
-    '[class.ant-radio-group-small]': `nzSize === 'small'`,
-    '[class.ant-radio-group-solid]': `nzButtonStyle === 'solid'`,
-    '[class.ant-radio-group-rtl]': `dir === 'rtl'`,
+    '[class.wise-radio-group-large]': `nzSize === 'large'`,
+    '[class.wise-radio-group-small]': `nzSize === 'small'`,
+    '[class.wise-radio-group-solid]': `nzButtonStyle === 'solid'`,
+    '[class.wise-radio-group-rtl]': `dir === 'rtl'`,
   },
 })
 export class NzRadioGroupComponent

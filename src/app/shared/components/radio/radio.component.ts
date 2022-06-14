@@ -46,14 +46,14 @@ import { NzRadioService } from './radio.service';
     },
   ],
   host: {
-    '[class.ant-radio-wrapper]': '!isRadioButton',
-    '[class.ant-radio-button-wrapper]': 'isRadioButton',
-    '[class.ant-radio-wrapper-checked]': 'isChecked && !isRadioButton',
-    '[class.ant-radio-button-wrapper-checked]': 'isChecked && isRadioButton',
-    '[class.ant-radio-wrapper-disabled]': 'nzDisabled && !isRadioButton',
-    '[class.ant-radio-button-wrapper-disabled]': 'nzDisabled && isRadioButton',
-    '[class.ant-radio-wrapper-rtl]': `!isRadioButton && dir === 'rtl'`,
-    '[class.ant-radio-button-wrapper-rtl]': `isRadioButton && dir === 'rtl'`,
+    '[class.wise-radio-wrapper]': '!isRadioButton',
+    '[class.wise-radio-button-wrapper]': 'isRadioButton',
+    '[class.wise-radio-wrapper-checked]': 'isChecked && !isRadioButton',
+    '[class.wise-radio-button-wrapper-checked]': 'isChecked && isRadioButton',
+    '[class.wise-radio-wrapper-disabled]': 'nzDisabled && !isRadioButton',
+    '[class.wise-radio-button-wrapper-disabled]': 'nzDisabled && isRadioButton',
+    '[class.wise-radio-wrapper-rtl]': `!isRadioButton && dir === 'rtl'`,
+    '[class.wise-radio-button-wrapper-rtl]': `isRadioButton && dir === 'rtl'`,
   },
 })
 export class NzRadioComponent
