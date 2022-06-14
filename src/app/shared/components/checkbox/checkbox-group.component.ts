@@ -15,11 +15,7 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import {
-  BooleanInput,
-  OnChangeType,
-  OnTouchedType,
-} from 'ng-zorro-antd/core/types';
+import { BooleanInput, OnChangeType, OnTouchedType } from 'ng-zorro-antd/core/types';
 import { InputBoolean } from 'ng-zorro-antd/core/util';
 
 export interface NzCheckBoxOptionInterface {
@@ -47,9 +43,7 @@ export interface NzCheckBoxOptionInterface {
     '[class.ant-checkbox-group-rtl]': `dir === 'rtl'`,
   },
 })
-export class NzCheckboxGroupComponent
-  implements ControlValueAccessor, OnInit, OnDestroy
-{
+export class NzCheckboxGroupComponent implements ControlValueAccessor, OnInit, OnDestroy {
   static ngAcceptInputType_nzDisabled: BooleanInput;
 
   onChange: OnChangeType = () => {};
@@ -74,7 +68,7 @@ export class NzCheckboxGroupComponent
     private elementRef: ElementRef,
     private focusMonitor: FocusMonitor,
     private cdr: ChangeDetectorRef,
-    @Optional() private directionality: Directionality
+    @Optional() private directionality: Directionality,
   ) {}
 
   ngOnInit(): void {
@@ -104,6 +98,8 @@ export class NzCheckboxGroupComponent
   }
 
   writeValue(value: NzCheckBoxOptionInterface[]): void {
+    // ? nz-checkbox-group 컴포넌트가 가지고 있는 ngModel 의 값은 Object Array 이다.
+    // ! nz-checkbox-group 내부에 있는 nz-checkbox 의 체크상태는 NzCheckBoxOptionInterface.checked 속성으로 컨트롤 한다.
     this.options = value;
     this.cdr.markForCheck();
   }

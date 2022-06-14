@@ -64,8 +64,8 @@ export class NzCheckboxComponent
 
   onChange: OnChangeType = () => {};
   onTouched: OnTouchedType = () => {};
-  @ViewChild('inputElement', { static: true })
-  inputElement!: ElementRef<HTMLInputElement>;
+  // 인풋엘리먼트 레퍼런스
+  @ViewChild('inputElement', { static: true }) inputElement!: ElementRef<HTMLInputElement>;
   @Output() readonly nzCheckedChange = new EventEmitter<boolean>();
   @Input() nzValue: NzSafeAny | null = null;
   @Input() @InputBoolean() nzAutoFocus = false;
@@ -74,11 +74,16 @@ export class NzCheckboxComponent
   @Input() @InputBoolean() nzChecked = false;
   @Input() nzId: string | null = null;
 
+  /**
+   * input[type=checkbox] 변경시 호출
+   * @param checked
+   */
   innerCheckedChange(checked: boolean): void {
     if (!this.nzDisabled) {
       this.nzChecked = checked;
       this.onChange(this.nzChecked);
       this.nzCheckedChange.emit(this.nzChecked);
+      // nz-checkbox-wrapper 엘리먼트에 감싸져 있을 경우 - wrapper 컴포넌트의 onChange() 호출
       if (this.nzCheckboxWrapperComponent) {
         this.nzCheckboxWrapperComponent.onChange();
       }
@@ -86,6 +91,7 @@ export class NzCheckboxComponent
   }
 
   writeValue(value: boolean): void {
+    // ? nz-checkbox 컴포넌트가 자체적으로 가지고 있는 ngModel 의 값은 boolean 타입이다.
     this.nzChecked = value;
     this.cdr.markForCheck();
   }
@@ -117,7 +123,7 @@ export class NzCheckboxComponent
     @Optional() private nzCheckboxWrapperComponent: NzCheckboxWrapperComponent,
     private cdr: ChangeDetectorRef,
     private focusMonitor: FocusMonitor,
-    @Optional() private directionality: Directionality
+    @Optional() private directionality: Directionality,
   ) {}
 
   ngOnInit(): void {
@@ -129,6 +135,7 @@ export class NzCheckboxComponent
           Promise.resolve().then(() => this.onTouched());
         }
       });
+    // * nz-checkbox-wrapper 엘리먼트에 감싸져 있을 경우 - wrapper 컴포넌트의 checkboxList에 현재 컴포넌트를 추가
     if (this.nzCheckboxWrapperComponent) {
       this.nzCheckboxWrapperComponent.addCheckbox(this);
     }
@@ -157,6 +164,7 @@ export class NzCheckboxComponent
           });
         });
 
+      // ! input[type=checkbox] 엘리먼트의 클릭이벤트를 금지시킨다. host 엘리먼트의 클릭이벤트로 대체한다.
       fromEvent(this.inputElement.nativeElement, 'click')
         .pipe(takeUntil(this.destroy$))
         .subscribe((event) => event.stopPropagation());
@@ -171,6 +179,7 @@ export class NzCheckboxComponent
 
   ngOnDestroy(): void {
     this.focusMonitor.stopMonitoring(this.elementRef);
+    // * nz-checkbox-wrapper 엘리먼트에 감싸져 있을 경우 - wrapper 컴포넌트의 checkboxList에 현재 컴포넌트를 제거
     if (this.nzCheckboxWrapperComponent) {
       this.nzCheckboxWrapperComponent.removeCheckbox(this);
     }
