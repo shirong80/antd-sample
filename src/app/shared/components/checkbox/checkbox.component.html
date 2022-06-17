@@ -1,13 +1,13 @@
 <span
-  class="ant-checkbox"
-  [class.ant-checkbox-checked]="nzChecked && !nzIndeterminate"
-  [class.ant-checkbox-disabled]="nzDisabled"
-  [class.ant-checkbox-indeterminate]="nzIndeterminate"
+  class="wise-checkbox"
+  [class.wise-checkbox-checked]="nzChecked && !nzIndeterminate"
+  [class.wise-checkbox-disabled]="nzDisabled"
+  [class.wise-checkbox-indeterminate]="nzIndeterminate"
 >
   <input
     #inputElement
     type="checkbox"
-    class="ant-checkbox-input"
+    class="wise-checkbox-input"
     [attr.autofocus]="nzAutoFocus ? 'autofocus' : null"
     [attr.id]="nzId"
     [checked]="nzChecked"
@@ -15,6 +15,6 @@
     [disabled]="nzDisabled"
     (ngModelChange)="innerCheckedChange($event)"
   />
-  <span class="ant-checkbox-inner"></span>
+  <span class="wise-checkbox-inner"></span>
 </span>
 <span><ng-content></ng-content></span>

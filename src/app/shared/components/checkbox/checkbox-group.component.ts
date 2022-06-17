@@ -39,8 +39,8 @@ export interface NzCheckBoxOptionInterface {
     },
   ],
   host: {
-    class: 'ant-checkbox-group',
-    '[class.ant-checkbox-group-rtl]': `dir === 'rtl'`,
+    class: 'wise-checkbox-group',
+    '[class.wise-checkbox-group-rtl]': `dir === 'rtl'`,
   },
 })
 export class NzCheckboxGroupComponent implements ControlValueAccessor, OnInit, OnDestroy {
