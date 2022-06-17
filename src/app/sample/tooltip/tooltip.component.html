@@ -1,0 +1,17 @@
+<h2>기본 사용법</h2>
+<br /><br /><br />
+<span nz-tooltip nzTooltipTitle="prompt text" [nzTooltipTrigger]="'click'">
+  Tooltip will show when mouse enter.
+</span>
+<hr />
+<h2>nzTooltipOrigin 사용법</h2>
+<br /><br /><br />
+<button nz-button nz-element #button="nzElement" class="btn md default" type="button">
+  Action
+</button>
+<a
+  nz-tooltip
+  nzTooltipTitle="This action could not be revoked!"
+  [nzTooltipOrigin]="button.elementRef"
+  >Notice</a
+>
