@@ -46,9 +46,9 @@ import { NzCheckboxWrapperComponent } from './checkbox-wrapper.component';
     },
   ],
   host: {
-    class: 'ant-checkbox-wrapper',
-    '[class.ant-checkbox-wrapper-checked]': 'nzChecked',
-    '[class.ant-checkbox-rtl]': `dir === 'rtl'`,
+    class: 'wise-checkbox-wrapper',
+    '[class.wise-checkbox-wrapper-checked]': 'nzChecked',
+    '[class.wise-checkbox-rtl]': `dir === 'rtl'`,
   },
 })
 export class NzCheckboxComponent

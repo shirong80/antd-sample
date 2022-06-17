@@ -40,6 +40,6 @@ export class NzCheckboxWrapperComponent {
   }
 
   constructor(renderer: Renderer2, elementRef: ElementRef) {
-    renderer.addClass(elementRef.nativeElement, 'ant-checkbox-group');
+    renderer.addClass(elementRef.nativeElement, 'wise-checkbox-group');
   }
 }
