@@ -47,6 +47,7 @@ export class NzTooltipDirective extends NzTooltipBaseDirective {
   @Output('nzTooltipVisibleChange') override readonly visibleChange =
     new EventEmitter<boolean>();
 
+  // Tooltip 컴포넌트를 동적으로 생성
   override componentRef: ComponentRef<NzToolTipComponent> =
     this.hostView.createComponent(NzToolTipComponent);
 

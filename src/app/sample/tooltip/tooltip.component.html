@@ -4,6 +4,26 @@
   Tooltip will show when mouse enter.
 </span>
 <hr />
+<h2>nzTooltipArrowPointAtCenter 사용법</h2>
+<br /><br /><br />
+<button
+  nzTooltipTitle="prompt text"
+  nzTooltipPlacement="topLeft"
+  nz-tooltip
+  class="btn md default"
+>
+  Align edge
+</button>
+<button
+  nz-tooltip
+  nzTooltipTitle="prompt text"
+  nzTooltipPlacement="bottomLeft"
+  [nzTooltipArrowPointAtCenter]="true"
+  class="btn md default mt10"
+>
+  Arrow points to center
+</button>
+<hr />
 <h2>nzTooltipOrigin 사용법</h2>
 <br /><br /><br />
 <button nz-button nz-element #button="nzElement" class="btn md default" type="button">
@@ -15,3 +35,13 @@
   [nzTooltipOrigin]="button.elementRef"
   >Notice</a
 >
+<hr />
+<h2>툴팁에 템플릿 사용</h2>
+<br /><br /><br />
+<a nz-tooltip [nzTooltipTitle]="titleTemplate" [nzTooltipTitleContext]="{ $implicit: 'Icon' }"
+  >This Tooltip has an Icon</a
+>
+<ng-template #titleTemplate let-thing>
+  <i nz-icon nzType="file"></i>
+  <span>Tooltip With {{ thing }}</span>
+</ng-template>
