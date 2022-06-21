@@ -23,7 +23,7 @@ import { NzToolTipComponent } from './tooltip.component';
   selector: '[nz-tooltip]',
   exportAs: 'nzTooltip',
   host: {
-    '[class.ant-tooltip-open]': 'visible',
+    '[class.wise-tooltip-open]': 'visible',
   },
 })
 export class NzTooltipDirective extends NzTooltipBaseDirective {
