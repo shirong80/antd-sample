@@ -1,0 +1,171 @@
+// TODO. tooltip.component.html : tooltip -rtl -content -arrow -arrow-content -inner
+// TODO. tooltip.directive.ts : -open
+
+//* arrow 관련 클래스들은 placement, color 관련 클래스들과 함께 주로 쓰임 : 사용시 추가 작업 필요
+//* inner 관련 클래스들도 마찬가지로  color 관련 클래스들과 함께 많이 쓰임 : 사용시 추가 작업 필요
+
+
+.wise-tooltip {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  width: max-content;
+  max-width: 250px;
+  visibility: visible;
+  // 추가
+  top: -35px;
+}
+
+.wise-tooltip-rtl {
+  direction: rtl;
+  
+  .wise-tooltip-inner {
+    text-align: right;
+  }
+}
+
+.wise-tooltip-arrow {
+  position: absolute;
+  display: block;
+  width: 13.07106781px;
+  height: 13.07106781px;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+.wise-tooltip-arrow-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  content: '';
+  pointer-events: auto;
+}
+
+.wise-tooltip-inner {
+  min-width: 30px;
+  min-height: 32px;
+  padding: 6px 8px;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  word-wrap: break-word;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+//* placement 배치
+
+.ant-tooltip-hidden {
+  display: none;
+}
+.ant-tooltip-placement-top,
+.ant-tooltip-placement-topLeft,
+.ant-tooltip-placement-topRight {
+  padding-bottom: 8px;
+
+  .wise-tooltip-arrow {
+    bottom: -5.07106781px;
+  }
+  .wise-tooltip-arrow-content {
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
+    transform: translateY(-6.53553391px) rotate(45deg);
+  }
+}
+.ant-tooltip-placement-right,
+.ant-tooltip-placement-rightTop,
+.ant-tooltip-placement-rightBottom {
+  padding-left: 8px;
+
+  .wise-tooltip-arrow {
+    left: -5.07106781px;
+  }
+  .wise-tooltip-arrow-content {
+    box-shadow: -3px 3px 7px rgba(0, 0, 0, 0.07);
+    transform: translateX(6.53553391px) rotate(45deg);
+  }
+}
+.ant-tooltip-placement-bottom,
+.ant-tooltip-placement-bottomLeft,
+.ant-tooltip-placement-bottomRight {
+  padding-top: 8px;
+
+  .wise-tooltip-arrow {
+    top: -5.07106781px;
+  }
+  .wise-tooltip-arrow-content {
+    box-shadow: -3px -3px 7px rgba(0, 0, 0, 0.07);
+    transform: translateY(6.53553391px) rotate(45deg);
+  }
+}
+.ant-tooltip-placement-left,
+.ant-tooltip-placement-leftTop,
+.ant-tooltip-placement-leftBottom {
+  padding-right: 8px;
+
+  .wise-tooltip-arrow {
+    right: -5.07106781px;
+  }
+  .wise-tooltip-arrow-content {
+    box-shadow: 3px -3px 7px rgba(0, 0, 0, 0.07);
+    transform: translateX(-6.53553391px) rotate(45deg);
+  }
+}
+
+//* placement와 arrow, arrow-content
+
+.ant-tooltip-placement-top .wise-tooltip-arrow,
+.ant-tooltip-placement-bottom .wise-tooltip-arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ant-tooltip-placement-topLeft .wise-tooltip-arrow,
+.ant-tooltip-placement-bottomLeft .wise-tooltip-arrow {
+  left: 13px;
+}
+.ant-tooltip-placement-topRight .wise-tooltip-arrow,
+.ant-tooltip-placement-bottomRight .wise-tooltip-arrow {
+  right: 13px;
+}
+
+.ant-tooltip-placement-right .wise-tooltip-arrow,
+.ant-tooltip-placement-left .wise-tooltip-arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ant-tooltip-placement-rightTop .wise-tooltip-arrow,
+.ant-tooltip-placement-leftTop .wise-tooltip-arrow {
+  top: 5px;
+}
+.ant-tooltip-placement-rightBottom .wise-tooltip-arrow,
+.ant-tooltip-placement-leftBottom .wise-tooltip-arrow {
+  bottom: 5px;
+}
+
+
+//* 미사용
+
+.wise-slider-handle .wise-tooltip-open {
+  border-color: #1890ff;
+}
+.wise-slider:hover .wise-slider-handle:not(.wise-tooltip-open) {
+  border-color: #69c0ff;
+}
