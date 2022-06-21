@@ -74,12 +74,12 @@
 
 //* placement 배치
 
-.ant-tooltip-hidden {
+.wise-tooltip-hidden {
   display: none;
 }
-.ant-tooltip-placement-top,
-.ant-tooltip-placement-topLeft,
-.ant-tooltip-placement-topRight {
+.wise-tooltip-placement-top,
+.wise-tooltip-placement-topLeft,
+.wise-tooltip-placement-topRight {
   padding-bottom: 8px;
 
   .wise-tooltip-arrow {
@@ -90,9 +90,9 @@
     transform: translateY(-6.53553391px) rotate(45deg);
   }
 }
-.ant-tooltip-placement-right,
-.ant-tooltip-placement-rightTop,
-.ant-tooltip-placement-rightBottom {
+.wise-tooltip-placement-right,
+.wise-tooltip-placement-rightTop,
+.wise-tooltip-placement-rightBottom {
   padding-left: 8px;
 
   .wise-tooltip-arrow {
@@ -103,9 +103,9 @@
     transform: translateX(6.53553391px) rotate(45deg);
   }
 }
-.ant-tooltip-placement-bottom,
-.ant-tooltip-placement-bottomLeft,
-.ant-tooltip-placement-bottomRight {
+.wise-tooltip-placement-bottom,
+.wise-tooltip-placement-bottomLeft,
+.wise-tooltip-placement-bottomRight {
   padding-top: 8px;
 
   .wise-tooltip-arrow {
@@ -116,9 +116,9 @@
     transform: translateY(6.53553391px) rotate(45deg);
   }
 }
-.ant-tooltip-placement-left,
-.ant-tooltip-placement-leftTop,
-.ant-tooltip-placement-leftBottom {
+.wise-tooltip-placement-left,
+.wise-tooltip-placement-leftTop,
+.wise-tooltip-placement-leftBottom {
   padding-right: 8px;
 
   .wise-tooltip-arrow {
@@ -132,31 +132,31 @@
 
 //* placement와 arrow, arrow-content
 
-.ant-tooltip-placement-top .wise-tooltip-arrow,
-.ant-tooltip-placement-bottom .wise-tooltip-arrow {
+.wise-tooltip-placement-top .wise-tooltip-arrow,
+.wise-tooltip-placement-bottom .wise-tooltip-arrow {
   left: 50%;
   transform: translateX(-50%);
 }
-.ant-tooltip-placement-topLeft .wise-tooltip-arrow,
-.ant-tooltip-placement-bottomLeft .wise-tooltip-arrow {
+.wise-tooltip-placement-topLeft .wise-tooltip-arrow,
+.wise-tooltip-placement-bottomLeft .wise-tooltip-arrow {
   left: 13px;
 }
-.ant-tooltip-placement-topRight .wise-tooltip-arrow,
-.ant-tooltip-placement-bottomRight .wise-tooltip-arrow {
+.wise-tooltip-placement-topRight .wise-tooltip-arrow,
+.wise-tooltip-placement-bottomRight .wise-tooltip-arrow {
   right: 13px;
 }
 
-.ant-tooltip-placement-right .wise-tooltip-arrow,
-.ant-tooltip-placement-left .wise-tooltip-arrow {
+.wise-tooltip-placement-right .wise-tooltip-arrow,
+.wise-tooltip-placement-left .wise-tooltip-arrow {
   top: 50%;
   transform: translateY(-50%);
 }
-.ant-tooltip-placement-rightTop .wise-tooltip-arrow,
-.ant-tooltip-placement-leftTop .wise-tooltip-arrow {
+.wise-tooltip-placement-rightTop .wise-tooltip-arrow,
+.wise-tooltip-placement-leftTop .wise-tooltip-arrow {
   top: 5px;
 }
-.ant-tooltip-placement-rightBottom .wise-tooltip-arrow,
-.ant-tooltip-placement-leftBottom .wise-tooltip-arrow {
+.wise-tooltip-placement-rightBottom .wise-tooltip-arrow,
+.wise-tooltip-placement-leftBottom .wise-tooltip-arrow {
   bottom: 5px;
 }
 
