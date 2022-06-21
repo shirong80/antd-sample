@@ -406,7 +406,7 @@ export abstract class NzTooltipBaseComponent implements OnDestroy, OnInit {
 
   _classMap: NgClassInterface = {};
 
-  _prefix = 'ant-tooltip';
+  _prefix = 'wise-tooltip';
 
   _positions: ConnectionPositionPair[] = [...DEFAULT_TOOLTIP_POSITIONS];
 
