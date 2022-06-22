@@ -1,13 +1,6 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import {
-  DOWN_ARROW,
-  ENTER,
-  ESCAPE,
-  SPACE,
-  TAB,
-  UP_ARROW,
-} from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER, ESCAPE, SPACE, TAB, UP_ARROW } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay,
   CdkOverlayOrigin,
@@ -43,16 +36,9 @@ import { BehaviorSubject, combineLatest, fromEvent, merge } from 'rxjs';
 import { startWith, switchMap, takeUntil } from 'rxjs/operators';
 
 import { slideMotion } from 'ng-zorro-antd/core/animation';
-import {
-  NzConfigKey,
-  NzConfigService,
-  WithConfig,
-} from 'ng-zorro-antd/core/config';
+import { NzConfigKey, NzConfigService, WithConfig } from 'ng-zorro-antd/core/config';
 import { NzNoAnimationDirective } from 'ng-zorro-antd/core/no-animation';
-import {
-  cancelRequestAnimationFrame,
-  reqAnimFrame,
-} from 'ng-zorro-antd/core/polyfill';
+import { cancelRequestAnimationFrame, reqAnimFrame } from 'ng-zorro-antd/core/polyfill';
 import { NzDestroyService } from 'ng-zorro-antd/core/services';
 import {
   BooleanInput,
@@ -75,13 +61,10 @@ import {
 
 const defaultFilterOption: NzFilterOptionType = (
   searchValue: string,
-  item: NzSelectItemInterface
+  item: NzSelectItemInterface,
 ): boolean => {
   if (item && item.nzLabel) {
-    return (
-      item.nzLabel.toString().toLowerCase().indexOf(searchValue.toLowerCase()) >
-      -1
-    );
+    return item.nzLabel.toString().toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
   } else {
     return false;
   }
@@ -124,12 +107,7 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
   },
 })
 export class NzSelectComponent
-  implements
-    ControlValueAccessor,
-    OnInit,
-    AfterContentInit,
-    OnChanges,
-    OnDestroy
+  implements ControlValueAccessor, OnInit, AfterContentInit, OnChanges, OnDestroy
 {
   readonly _nzModuleName: NzConfigKey = NZ_CONFIG_MODULE_NAME;
 
@@ -150,29 +128,30 @@ export class NzSelectComponent
   @Input() nzDropdownClassName: string | null = null;
   @Input() nzDropdownMatchSelectWidth = true;
   @Input() nzDropdownStyle: { [key: string]: string } | null = null;
-  @Input() nzNotFoundContent: string | TemplateRef<NzSafeAny> | undefined =
-    undefined;
+  @Input() nzNotFoundContent: string | TemplateRef<NzSafeAny> | undefined = undefined;
   @Input() nzPlaceHolder: string | TemplateRef<NzSafeAny> | null = null;
   @Input() nzMaxTagCount = Infinity;
   @Input() nzDropdownRender: TemplateRef<NzSafeAny> | null = null;
   @Input() nzCustomTemplate: TemplateRef<{
     $implicit: NzSelectItemInterface;
   }> | null = null;
-  @Input()
-  @WithConfig<TemplateRef<NzSafeAny> | string | null>()
-  nzSuffixIcon: TemplateRef<NzSafeAny> | string | null = null;
+  // ? WithConfig 데코레이터는 Input() 값이 없을 경우 NzConfig 에 등록된 기본값을 세팅해준다.
+  // ? NzConfig 에 등록된 기본값은 NzConfigService 를 통해서 받아오거나 세팅할수 있다.
+  @Input() @WithConfig<TemplateRef<NzSafeAny> | string | null>() nzSuffixIcon:
+    | TemplateRef<NzSafeAny>
+    | string
+    | null = null;
   @Input() nzClearIcon: TemplateRef<NzSafeAny> | null = null;
   @Input() nzRemoveIcon: TemplateRef<NzSafeAny> | null = null;
   @Input() nzMenuItemSelectedIcon: TemplateRef<NzSafeAny> | null = null;
   @Input() nzTokenSeparators: string[] = [];
-  @Input() nzMaxTagPlaceholder: TemplateRef<{ $implicit: NzSafeAny[] }> | null =
-    null;
+  @Input() nzMaxTagPlaceholder: TemplateRef<{ $implicit: NzSafeAny[] }> | null = null;
   @Input() nzMaxMultipleCount = Infinity;
   @Input() nzMode: NzSelectModeType = 'default';
   @Input() nzFilterOption: NzFilterOptionType = defaultFilterOption;
   @Input() compareWith: (o1: NzSafeAny, o2: NzSafeAny) => boolean = (
     o1: NzSafeAny,
-    o2: NzSafeAny
+    o2: NzSafeAny,
   ) => o1 === o2;
   @Input() @InputBoolean() nzAllowClear = false;
   @Input() @WithConfig<boolean>() @InputBoolean() nzBorderless = false;
@@ -191,9 +170,7 @@ export class NzSelectComponent
     this._nzShowArrow = value;
   }
   get nzShowArrow(): boolean {
-    return this._nzShowArrow === undefined
-      ? this.nzMode === 'default'
-      : this._nzShowArrow;
+    return this._nzShowArrow === undefined ? this.nzMode === 'default' : this._nzShowArrow;
   }
 
   @Output() readonly nzOnSearch = new EventEmitter<string>();
@@ -216,9 +193,7 @@ export class NzSelectComponent
   @ViewChild(NzSelectTopControlComponent, { static: true, read: ElementRef })
   nzSelectTopControlComponentElement!: ElementRef;
   private listOfValue$ = new BehaviorSubject<NzSafeAny[]>([]);
-  private listOfTemplateItem$ = new BehaviorSubject<NzSelectItemInterface[]>(
-    []
-  );
+  private listOfTemplateItem$ = new BehaviorSubject<NzSelectItemInterface[]>([]);
   private listOfTagAndTemplateItem: NzSelectItemInterface[] = [];
   private searchValue: string = '';
   private isReactiveDriven = false;
@@ -252,21 +227,14 @@ export class NzSelectComponent
   onItemClick(value: NzSafeAny): void {
     this.activatedValue = value;
     if (this.nzMode === 'default') {
-      if (
-        this.listOfValue.length === 0 ||
-        !this.compareWith(this.listOfValue[0], value)
-      ) {
+      if (this.listOfValue.length === 0 || !this.compareWith(this.listOfValue[0], value)) {
         this.updateListOfValue([value]);
       }
       this.setOpenState(false);
     } else {
-      const targetIndex = this.listOfValue.findIndex((o) =>
-        this.compareWith(o, value)
-      );
+      const targetIndex = this.listOfValue.findIndex((o) => this.compareWith(o, value));
       if (targetIndex !== -1) {
-        const listOfValueAfterRemoved = this.listOfValue.filter(
-          (_, i) => i !== targetIndex
-        );
+        const listOfValueAfterRemoved = this.listOfValue.filter((_, i) => i !== targetIndex);
         this.updateListOfValue(listOfValueAfterRemoved);
       } else if (this.listOfValue.length < this.nzMaxMultipleCount) {
         const listOfValueAfterAdded = [...this.listOfValue, value];
@@ -281,7 +249,7 @@ export class NzSelectComponent
 
   onItemDelete(item: NzSelectItemInterface): void {
     const listOfSelectedValue = this.listOfValue.filter(
-      (v) => !this.compareWith(v, item.nzValue)
+      (v) => !this.compareWith(v, item.nzValue),
     );
     this.updateListOfValue(listOfSelectedValue);
     this.clearInput();
@@ -299,7 +267,7 @@ export class NzSelectComponent
       });
     if (this.nzMode === 'tags' && this.searchValue) {
       const matchedItem = this.listOfTagAndTemplateItem.find(
-        (item) => item.nzLabel === this.searchValue
+        (item) => item.nzLabel === this.searchValue,
       );
       if (!matchedItem) {
         const tagItem = this.generateTagItem(this.searchValue);
@@ -312,31 +280,23 @@ export class NzSelectComponent
     const activatedItem =
       listOfContainerItem.find((item) => item.nzLabel === this.searchValue) ||
       listOfContainerItem.find((item) =>
-        this.compareWith(item.nzValue, this.listOfValue[0])
+        this.compareWith(item.nzValue, this.listOfValue[0]),
       ) ||
       listOfContainerItem[0];
     this.activatedValue = (activatedItem && activatedItem.nzValue) || null;
-    let listOfGroupLabel: Array<
-      string | number | TemplateRef<NzSafeAny> | null
-    > = [];
+    let listOfGroupLabel: Array<string | number | TemplateRef<NzSafeAny> | null> = [];
     if (this.isReactiveDriven) {
       listOfGroupLabel = [
-        ...new Set(
-          this.nzOptions.filter((o) => o.groupLabel).map((o) => o.groupLabel!)
-        ),
+        ...new Set(this.nzOptions.filter((o) => o.groupLabel).map((o) => o.groupLabel!)),
       ];
     } else {
       if (this.listOfNzOptionGroupComponent) {
-        listOfGroupLabel = this.listOfNzOptionGroupComponent.map(
-          (o) => o.nzLabel
-        );
+        listOfGroupLabel = this.listOfNzOptionGroupComponent.map((o) => o.nzLabel);
       }
     }
     /** insert group item **/
     listOfGroupLabel.forEach((label) => {
-      const index = listOfContainerItem.findIndex(
-        (item) => label === item.groupLabel
-      );
+      const index = listOfContainerItem.findIndex((item) => label === item.groupLabel);
       if (index > -1) {
         const groupItem = {
           groupLabel: label,
@@ -357,7 +317,7 @@ export class NzSelectComponent
   updateListOfValue(listOfValue: NzSafeAny[]): void {
     const covertListToModel = (
       list: NzSafeAny[],
-      mode: NzSelectModeType
+      mode: NzSelectModeType,
     ): NzSafeAny[] | NzSafeAny => {
       if (mode === 'default') {
         if (list.length > 0) {
@@ -378,25 +338,18 @@ export class NzSelectComponent
     }
   }
 
+  // ! 뭐하는 함수?
   onTokenSeparate(listOfLabel: string[]): void {
     const listOfMatchedValue = this.listOfTagAndTemplateItem
-      .filter(
-        (item) =>
-          listOfLabel.findIndex((label) => label === item.nzLabel) !== -1
-      )
+      .filter((item) => listOfLabel.findIndex((label) => label === item.nzLabel) !== -1)
       .map((item) => item.nzValue)
-      .filter(
-        (item) =>
-          this.listOfValue.findIndex((v) => this.compareWith(v, item)) === -1
-      );
+      .filter((item) => this.listOfValue.findIndex((v) => this.compareWith(v, item)) === -1);
     if (this.nzMode === 'multiple') {
       this.updateListOfValue([...this.listOfValue, ...listOfMatchedValue]);
     } else if (this.nzMode === 'tags') {
       const listOfUnMatchedLabel = listOfLabel.filter(
         (label) =>
-          this.listOfTagAndTemplateItem.findIndex(
-            (item) => item.nzLabel === label
-          ) === -1
+          this.listOfTagAndTemplateItem.findIndex((item) => item.nzLabel === label) === -1,
       );
       this.updateListOfValue([
         ...this.listOfValue,
@@ -415,7 +368,7 @@ export class NzSelectComponent
       .filter((item) => item.type === 'item')
       .filter((item) => !item.nzDisabled);
     const activatedIndex = listOfFilteredOptionNotDisabled.findIndex((item) =>
-      this.compareWith(item.nzValue, this.activatedValue)
+      this.compareWith(item.nzValue, this.activatedValue),
     );
     switch (e.keyCode) {
       case UP_ARROW:
@@ -425,8 +378,7 @@ export class NzSelectComponent
             activatedIndex > 0
               ? activatedIndex - 1
               : listOfFilteredOptionNotDisabled.length - 1;
-          this.activatedValue =
-            listOfFilteredOptionNotDisabled[preIndex].nzValue;
+          this.activatedValue = listOfFilteredOptionNotDisabled[preIndex].nzValue;
         }
         break;
       case DOWN_ARROW:
@@ -436,8 +388,7 @@ export class NzSelectComponent
             activatedIndex < listOfFilteredOptionNotDisabled.length - 1
               ? activatedIndex + 1
               : 0;
-          this.activatedValue =
-            listOfFilteredOptionNotDisabled[nextIndex].nzValue;
+          this.activatedValue = listOfFilteredOptionNotDisabled[nextIndex].nzValue;
         } else {
           this.setOpenState(true);
         }
@@ -520,11 +471,11 @@ export class NzSelectComponent
     if (this.platform.isBrowser && this.originElement.nativeElement) {
       const triggerWidth = this.triggerWidth;
       cancelRequestAnimationFrame(this.requestId);
+      // ? 드롭다운을 부드럽게 표현하기 위해서 requestAnimationFrame 을 사용한다.
       this.requestId = reqAnimFrame(() => {
         // Blink triggers style and layout pipelines anytime the `getBoundingClientRect()` is called, which may cause a
         // frame drop. That's why it's scheduled through the `requestAnimationFrame` to unload the composite thread.
-        this.triggerWidth =
-          this.originElement.nativeElement.getBoundingClientRect().width;
+        this.triggerWidth = this.originElement.nativeElement.getBoundingClientRect().width;
         if (triggerWidth !== this.triggerWidth) {
           // The `requestAnimationFrame` will trigger change detection, but we're inside an `OnPush` component which won't have
           // the `ChecksEnabled` state. Calling `markForCheck()` will allow Angular to run the change detection from the root component
@@ -551,7 +502,7 @@ export class NzSelectComponent
     private platform: Platform,
     private focusMonitor: FocusMonitor,
     @Optional() private directionality: Directionality,
-    @Host() @Optional() public noAnimation?: NzNoAnimationDirective
+    @Host() @Optional() public noAnimation?: NzNoAnimationDirective,
   ) {}
 
   writeValue(modelValue: NzSafeAny | NzSafeAny[]): void {
@@ -560,7 +511,7 @@ export class NzSelectComponent
       this.value = modelValue;
       const covertModelToList = (
         model: NzSafeAny[] | NzSafeAny,
-        mode: NzSelectModeType
+        mode: NzSelectModeType,
       ): NzSafeAny[] => {
         if (model === null || model === undefined) {
           return [];
@@ -652,26 +603,20 @@ export class NzSelectComponent
           .filter(() => this.nzMode === 'tags')
           .filter(
             (value) =>
-              listOfTemplateItem.findIndex((o) =>
-                this.compareWith(o.nzValue, value)
-              ) === -1
+              listOfTemplateItem.findIndex((o) => this.compareWith(o.nzValue, value)) === -1,
           )
           .map(
             (value) =>
-              this.listOfTopItem.find((o) =>
-                this.compareWith(o.nzValue, value)
-              ) || this.generateTagItem(value)
+              this.listOfTopItem.find((o) => this.compareWith(o.nzValue, value)) ||
+              this.generateTagItem(value),
           );
-        this.listOfTagAndTemplateItem = [
-          ...listOfTemplateItem,
-          ...listOfTagItem,
-        ];
+        this.listOfTagAndTemplateItem = [...listOfTemplateItem, ...listOfTagItem];
         this.listOfTopItem = this.listOfValue
           .map(
             (v) =>
-              [...this.listOfTagAndTemplateItem, ...this.listOfTopItem].find(
-                (item) => this.compareWith(v, item.nzValue)
-              )!
+              [...this.listOfTagAndTemplateItem, ...this.listOfTopItem].find((item) =>
+                this.compareWith(v, item.nzValue),
+              )!,
           )
           .filter((item) => !!item);
         this.updateListOfContainerItem();
@@ -702,7 +647,7 @@ export class NzSelectComponent
           }
 
           this.ngZone.run(() => this.setOpenState(!this.nzOpen));
-        })
+        }),
     );
 
     // Caretaker note: we could've added this listener within the template `(overlayKeydown)="..."`,
@@ -721,51 +666,47 @@ export class NzSelectComponent
 
   ngAfterContentInit(): void {
     if (!this.isReactiveDriven) {
-      merge(
-        this.listOfNzOptionGroupComponent.changes,
-        this.listOfNzOptionComponent.changes
-      )
+      merge(this.listOfNzOptionGroupComponent.changes, this.listOfNzOptionComponent.changes)
         .pipe(
           startWith(true),
           switchMap(() =>
             merge(
+              // ? listOfComponent 전체에 변화가 발생하거나,
+              // ? list 에 들어있는 옵션중에 하나라도 변화가 발생하거나 하면,
+              // ? this.listOfTemplateItem$ 변수를 업데이트 시킨다.
               ...[
                 this.listOfNzOptionComponent.changes,
                 this.listOfNzOptionGroupComponent.changes,
                 ...this.listOfNzOptionComponent.map((option) => option.changes),
-                ...this.listOfNzOptionGroupComponent.map(
-                  (option) => option.changes
-                ),
-              ]
-            ).pipe(startWith(true))
+                ...this.listOfNzOptionGroupComponent.map((option) => option.changes),
+              ],
+            ).pipe(startWith(true)),
           ),
-          takeUntil(this.destroy$)
+          takeUntil(this.destroy$),
         )
         .subscribe(() => {
-          const listOfOptionInterface = this.listOfNzOptionComponent
-            .toArray()
-            .map((item) => {
-              const {
-                template,
-                nzLabel,
-                nzValue,
-                nzDisabled,
-                nzHide,
-                nzCustomContent,
-                groupLabel,
-              } = item;
-              return {
-                template,
-                nzLabel,
-                nzValue,
-                nzDisabled,
-                nzHide,
-                nzCustomContent,
-                groupLabel,
-                type: 'item',
-                key: nzValue,
-              };
-            });
+          const listOfOptionInterface = this.listOfNzOptionComponent.toArray().map((item) => {
+            const {
+              template,
+              nzLabel,
+              nzValue,
+              nzDisabled,
+              nzHide,
+              nzCustomContent,
+              groupLabel,
+            } = item;
+            return {
+              template,
+              nzLabel,
+              nzValue,
+              nzDisabled,
+              nzHide,
+              nzCustomContent,
+              groupLabel,
+              type: 'item',
+              key: nzValue,
+            };
+          });
           this.listOfTemplateItem$.next(listOfOptionInterface);
           this.cdr.markForCheck();
         });
