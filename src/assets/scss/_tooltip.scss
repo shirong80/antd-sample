@@ -15,14 +15,12 @@
   line-height: 1.5715;
   list-style: none;
   font-feature-settings: 'tnum';
-  position: absolute;
+  position: relative;
   z-index: 1070;
   display: block;
   width: max-content;
   max-width: 250px;
   visibility: visible;
-  // 추가
-  top: -35px;
 }
 
 .wise-tooltip-rtl {
