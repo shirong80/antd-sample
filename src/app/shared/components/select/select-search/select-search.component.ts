@@ -54,6 +54,7 @@ export class NzSelectSearchComponent implements AfterViewInit, OnChanges {
     this.onValueChange('');
   }
 
+  // ? 인풋박스에 입력된 문구의 길이만큼 hostDom 을 늘려주는 역할을 한다.
   syncMirrorWidth(): void {
     const mirrorDOM = this.mirrorElement!.nativeElement;
     const hostDOM = this.elementRef.nativeElement;
@@ -74,7 +75,7 @@ export class NzSelectSearchComponent implements AfterViewInit, OnChanges {
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private focusMonitor: FocusMonitor
+    private focusMonitor: FocusMonitor,
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {

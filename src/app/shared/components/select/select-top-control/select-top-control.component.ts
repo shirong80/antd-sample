@@ -39,9 +39,7 @@ import {
   templateUrl: './select-top-control.component.html',
   host: { class: 'ant-select-selector' },
 })
-export class NzSelectTopControlComponent
-  implements OnChanges, OnInit, OnDestroy
-{
+export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
   @Input() nzId: string | null = null;
   @Input() showSearch = false;
   @Input() placeHolder: string | TemplateRef<NzSafeAny> | null = null;
@@ -53,8 +51,7 @@ export class NzSelectTopControlComponent
   @Input() customTemplate: TemplateRef<{
     $implicit: NzSelectItemInterface;
   }> | null = null;
-  @Input() maxTagPlaceholder: TemplateRef<{ $implicit: NzSafeAny[] }> | null =
-    null;
+  @Input() maxTagPlaceholder: TemplateRef<{ $implicit: NzSafeAny[] }> | null = null;
   @Input() removeIcon: TemplateRef<NzSafeAny> | null = null;
   @Input() listOfTopItem: NzSelectItemInterface[] = [];
   @Input() tokenSeparators: string[] = [];
@@ -73,10 +70,8 @@ export class NzSelectTopControlComponent
 
   updateTemplateVariable(): void {
     const isSelectedValueEmpty = this.listOfTopItem.length === 0;
-    this.isShowPlaceholder =
-      isSelectedValueEmpty && !this.isComposing && !this.inputValue;
-    this.isShowSingleLabel =
-      !isSelectedValueEmpty && !this.isComposing && !this.inputValue;
+    this.isShowPlaceholder = isSelectedValueEmpty && !this.isComposing && !this.inputValue;
+    this.isShowSingleLabel = !isSelectedValueEmpty && !this.isComposing && !this.inputValue;
   }
 
   isComposingChange(isComposing: boolean): void {
@@ -94,10 +89,7 @@ export class NzSelectTopControlComponent
   }
 
   tokenSeparate(inputValue: string, tokenSeparators: string[]): void {
-    const includesSeparators = (
-      str: string | string[],
-      separators: string[]
-    ): boolean => {
+    const includesSeparators = (str: string | string[], separators: string[]): boolean => {
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for (let i = 0; i < separators.length; ++i) {
         if (str.lastIndexOf(separators[i]) > 0) {
@@ -106,10 +98,7 @@ export class NzSelectTopControlComponent
       }
       return false;
     };
-    const splitBySeparators = (
-      str: string | string[],
-      separators: string[]
-    ): string[] => {
+    const splitBySeparators = (str: string | string[], separators: string[]): string[] => {
       const reg = new RegExp(`[${separators.join()}]`);
       const array = (str as string).split(reg).filter((token) => token);
       return [...new Set(array)];
@@ -157,12 +146,11 @@ export class NzSelectTopControlComponent
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
-    @Host() @Optional() public noAnimation: NzNoAnimationDirective | null
+    @Host() @Optional() public noAnimation: NzNoAnimationDirective | null,
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { listOfTopItem, maxTagCount, customTemplate, maxTagPlaceholder } =
-      changes;
+    const { listOfTopItem, maxTagCount, customTemplate, maxTagPlaceholder } = changes;
     if (listOfTopItem) {
       this.updateTemplateVariable();
     }
@@ -177,20 +165,14 @@ export class NzSelectTopControlComponent
           contentTemplateOutletContext: o,
         }));
       if (this.listOfTopItem.length > this.maxTagCount) {
-        const exceededLabel = `+ ${
-          this.listOfTopItem.length - this.maxTagCount
-        } ...`;
-        const listOfSelectedValue = this.listOfTopItem.map(
-          (item) => item.nzValue
-        );
+        const exceededLabel = `+ ${this.listOfTopItem.length - this.maxTagCount} ...`;
+        const listOfSelectedValue = this.listOfTopItem.map((item) => item.nzValue);
         const exceededItem = {
           nzLabel: exceededLabel,
           nzValue: '$$__nz_exceeded_item',
           nzDisabled: true,
           contentTemplateOutlet: this.maxTagPlaceholder,
-          contentTemplateOutletContext: listOfSelectedValue.slice(
-            this.maxTagCount
-          ),
+          contentTemplateOutletContext: listOfSelectedValue.slice(this.maxTagCount),
         };
         listOfSlicedItem.push(exceededItem);
       }
@@ -204,10 +186,7 @@ export class NzSelectTopControlComponent
         .pipe(takeUntil(this.destroy$))
         .subscribe((event) => {
           // `HTMLElement.focus()` is a native DOM API which doesn't require Angular to run change detection.
-          if (
-            event.target !==
-            this.nzSelectSearchComponent.inputElement.nativeElement
-          ) {
+          if (event.target !== this.nzSelectSearchComponent.inputElement.nativeElement) {
             this.nzSelectSearchComponent.focus();
           }
         });
@@ -215,9 +194,11 @@ export class NzSelectTopControlComponent
       fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown')
         .pipe(takeUntil(this.destroy$))
         .subscribe((event) => {
+          // ? Input 엘리먼트에 키보드 이벤트 발생시
           if (event.target instanceof HTMLInputElement) {
             const inputValue = event.target.value;
 
+            // ? multiple, tags 모드에서 BACKSPACE 버튼을 통해서 기존 선택 항목을 삭제할 경우
             if (
               event.keyCode === BACKSPACE &&
               this.mode !== 'default' &&
@@ -227,9 +208,7 @@ export class NzSelectTopControlComponent
               event.preventDefault();
               // Run change detection only if the user has pressed the `Backspace` key and the following condition is met.
               this.ngZone.run(() =>
-                this.onDeleteItem(
-                  this.listOfTopItem[this.listOfTopItem.length - 1]
-                )
+                this.onDeleteItem(this.listOfTopItem[this.listOfTopItem.length - 1]),
               );
             }
           }

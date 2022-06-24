@@ -1,13 +1,23 @@
+<!-- * nzStringTemplateOutlet 사용용도 -->
+<!-- ? contentTemplateOutlet 값이 null 이 아닐 경우: -->
+<!-- contentTemplateOutletContext 를 implicit 로 넘겨서 랜더링 한다. -->
+<!-- ? contentTemplateOutlet 값이 null 일 경우 -->
+<!-- ng-container 내부에 있는 내용을 기본값으로 랜더링 한다. -->
+<!--
+  * nzStringTemplateOutlet 소스분석
+  ? 아래 설명에서 nzStringTemplateOutlet 디렉티브에 대하여 일괄적으로 본디렉티브라 칭한다.
+  1. 본디렉티브의 nzStringTemplateOutlet 속성에 cententTemplateOutlet 값을 부여한다.
+  2. 본디렉티브의 context 속성에 { $implicit: contentTemplateOutletContext } 값을 부여한다.
+  3. 본디렉티브의 ngOnchanges() 함수에서 일련의 로직을 거쳐서 recreateView() 함수를 호출하게 된다.
+  4. 본디렉티브의 recreateView() 함수에서 결과적으로 viewContainer.createEmbeddedView() 가 호출된다.
+-->
 <ng-container
   *nzStringTemplateOutlet="
     contentTemplateOutlet;
     context: { $implicit: contentTemplateOutletContext }
   "
 >
-  <div
-    class="ant-select-selection-item-content"
-    *ngIf="deletable; else labelTemplate"
-  >
+  <div class="ant-select-selection-item-content" *ngIf="deletable; else labelTemplate">
     {{ label }}
   </div>
   <ng-template #labelTemplate>{{ label }}</ng-template>
