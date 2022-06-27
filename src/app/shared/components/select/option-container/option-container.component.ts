@@ -27,8 +27,7 @@ import { NzSelectItemInterface, NzSelectModeType } from '../select.types';
   host: { class: 'ant-select-dropdown' },
 })
 export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
-  @Input() notFoundContent: string | TemplateRef<NzSafeAny> | undefined =
-    undefined;
+  @Input() notFoundContent: string | TemplateRef<NzSafeAny> | undefined = undefined;
   @Input() menuItemSelectedIcon: TemplateRef<NzSafeAny> | null = null;
   @Input() dropdownRender: TemplateRef<NzSafeAny> | null = null;
   @Input() activatedValue: NzSafeAny | null = null;
@@ -67,14 +66,14 @@ export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
     }
   }
 
+  /**
+   * * 활성화된 item 으로 스크롤 해준다.
+   */
   scrollToActivatedValue(): void {
     const index = this.listOfContainerItem.findIndex((item) =>
-      this.compareWith(item.key, this.activatedValue)
+      this.compareWith(item.key, this.activatedValue),
     );
-    if (
-      index < this.scrolledIndex ||
-      index >= this.scrolledIndex + this.maxItemLength
-    ) {
+    if (index < this.scrolledIndex || index >= this.scrolledIndex + this.maxItemLength) {
       this.cdkVirtualScrollViewport.scrollToIndex(index || 0);
     }
   }

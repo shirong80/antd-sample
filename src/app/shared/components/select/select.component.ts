@@ -216,6 +216,10 @@ export class NzSelectComponent
   statusCls: NgClassInterface = {};
   hasFeedback: boolean = false;
 
+  /**
+   * * tags 모드에서 신규 입력된 값을 NzSelectItemInterface 에 맞게 전환하는 함수.
+   * @param value -> 사용자가 입력한 스트링
+   */
   generateTagItem(value: string): NzSelectItemInterface {
     return {
       nzValue: value,
@@ -224,6 +228,10 @@ export class NzSelectComponent
     };
   }
 
+  /**
+   * * 옵션 클릭시 호출되는 함수
+   * @param value -> 사용자가 클릭한 옵션
+   */
   onItemClick(value: NzSafeAny): void {
     this.activatedValue = value;
     if (this.nzMode === 'default') {
@@ -247,6 +255,10 @@ export class NzSelectComponent
     }
   }
 
+  /**
+   * * multiple, tags 모드에서 선택된 아이템을 지울때 호출되는 함수
+   * @param item -> 삭제할려는 아이템
+   */
   onItemDelete(item: NzSelectItemInterface): void {
     const listOfSelectedValue = this.listOfValue.filter(
       (v) => !this.compareWith(v, item.nzValue),
@@ -255,6 +267,10 @@ export class NzSelectComponent
     this.clearInput();
   }
 
+  /**
+   * * listOfContainerItem 을 최종적으로 조합하는 함수.
+   * ? listOfContainerItem 은 option-container 에 넘겨지는 데이터.
+   */
   updateListOfContainerItem(): void {
     let listOfContainerItem = this.listOfTagAndTemplateItem
       .filter((item) => !item.nzHide)
@@ -314,6 +330,11 @@ export class NzSelectComponent
     this.nzSelectTopControlComponent.clearInputValue();
   }
 
+  /**
+   * * 선택된 값들을 업데이트 하는 함수
+   * ? this.value, ngModel 을 최종적으로 업데이트 하는 로직이 있다.
+   * @param listOfValue -> 선택된 값들
+   */
   updateListOfValue(listOfValue: NzSafeAny[]): void {
     const covertListToModel = (
       list: NzSafeAny[],
@@ -598,6 +619,7 @@ export class NzSelectComponent
     combineLatest([this.listOfValue$, this.listOfTemplateItem$])
       .pipe(takeUntil(this.destroy$))
       .subscribe(([listOfSelectedValue, listOfTemplateItem]) => {
+        // * tags 모드일 경우, 선택된 항목들을 NzSelectItemInterface[] 타입으로 가공
         const listOfTagItem = listOfSelectedValue
           .filter(() => this.nzMode === 'tags')
           .filter(
@@ -609,7 +631,9 @@ export class NzSelectComponent
               this.listOfTopItem.find((o) => this.compareWith(o.nzValue, value)) ||
               this.generateTagItem(value),
           );
+        // * listOfTagAndTemplateItem 값을 세팅
         this.listOfTagAndTemplateItem = [...listOfTemplateItem, ...listOfTagItem];
+        // * listOfTopItem 값을 세팅
         this.listOfTopItem = this.listOfValue
           .map(
             (v) =>
