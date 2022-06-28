@@ -11,8 +11,16 @@ import { NzRadioModule } from './components/radio/radio.module';
 import { NzSelectModule } from './components/select/select.module';
 // * tooltip
 import { NzToolTipModule } from './components/tooltip/tooltip.module';
+// * button
+import { NzButtonModule } from './components/button/button.module';
 
-const MODULES = [NzCheckboxModule, NzRadioModule, NzSelectModule, NzToolTipModule];
+const MODULES = [
+  NzCheckboxModule,
+  NzRadioModule,
+  NzSelectModule,
+  NzToolTipModule,
+  NzButtonModule,
+];
 @NgModule({
   imports: [CommonModule, FormsModule, MODULES],
   exports: MODULES,
