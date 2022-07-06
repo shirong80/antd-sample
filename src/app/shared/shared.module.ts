@@ -13,6 +13,8 @@ import { NzSelectModule } from './components/select/select.module';
 import { NzToolTipModule } from './components/tooltip/tooltip.module';
 // * button
 import { NzButtonModule } from './components/button/button.module';
+// * modal
+import { NzModalModule } from './components/modal/modal.module';
 
 const MODULES = [
   NzCheckboxModule,
@@ -20,6 +22,7 @@ const MODULES = [
   NzSelectModule,
   NzToolTipModule,
   NzButtonModule,
+  NzModalModule,
 ];
 @NgModule({
   imports: [CommonModule, FormsModule, MODULES],

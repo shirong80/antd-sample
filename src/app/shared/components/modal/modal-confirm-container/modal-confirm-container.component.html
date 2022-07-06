@@ -1,0 +1,52 @@
+<div
+  #modalElement
+  role="document"
+  class="ant-modal"
+  [ngClass]="config.nzClassName!"
+  [ngStyle]="config.nzStyle!"
+  [style.width]="config?.nzWidth! | nzToCssUnit"
+>
+  <div class="ant-modal-content">
+    <button *ngIf="config.nzClosable" nz-modal-close (click)="onCloseClick()"></button>
+    <div class="ant-modal-body" [ngStyle]="config.nzBodyStyle!">
+      <div class="ant-modal-confirm-body-wrapper">
+        <div class="ant-modal-confirm-body">
+          <i nz-icon [nzType]="config.nzIconType!"></i>
+          <span class="ant-modal-confirm-title">
+            <ng-container *nzStringTemplateOutlet="config.nzTitle">
+              <span [innerHTML]="config.nzTitle"></span>
+            </ng-container>
+          </span>
+          <div class="ant-modal-confirm-content">
+            <ng-template cdkPortalOutlet></ng-template>
+            <div *ngIf="isStringContent" [innerHTML]="config.nzContent"></div>
+          </div>
+        </div>
+        <div class="ant-modal-confirm-btns">
+          <button
+            *ngIf="config.nzCancelText !== null"
+            [attr.cdkFocusInitial]="config.nzAutofocus === 'cancel' || null"
+            nz-button
+            (click)="onCancel()"
+            [nzLoading]="!!config.nzCancelLoading"
+            [disabled]="config.nzCancelDisabled"
+          >
+            {{ config.nzCancelText || locale.cancelText }}
+          </button>
+          <button
+            *ngIf="config.nzOkText !== null"
+            [attr.cdkFocusInitial]="config.nzAutofocus === 'ok' || null"
+            nz-button
+            [nzType]="config.nzOkType!"
+            (click)="onOk()"
+            [nzLoading]="!!config.nzOkLoading"
+            [disabled]="config.nzOkDisabled"
+            [nzDanger]="config.nzOkDanger"
+          >
+            {{ config.nzOkText || locale.okText }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

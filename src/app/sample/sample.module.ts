@@ -15,6 +15,7 @@ import { SampleRadioComponent } from './radio/radio.component';
 import { SampleSelectComponent } from './select/select.component';
 import { SampleTooltipComponent } from './tooltip/tooltip.component';
 import { SampleButtonComponent } from './button/button.component';
+import { SampleModalComponent } from './modal/modal.component';
 
 const COMPONENTS = [
   SampleCheckboxComponent,
@@ -22,6 +23,7 @@ const COMPONENTS = [
   SampleSelectComponent,
   SampleTooltipComponent,
   SampleButtonComponent,
+  SampleModalComponent,
 ];
 
 @NgModule({

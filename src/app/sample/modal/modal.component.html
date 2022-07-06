@@ -1,0 +1,17 @@
+<h1>모달 샘플</h1>
+<button nz-button [nzType]="'primary'" (click)="showModal()">
+  <span>모달 보기</span>
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="The first Modal"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <p>Content one</p>
+    <p>Content two</p>
+    <p>Content three</p>
+  </ng-container>
+</nz-modal>
