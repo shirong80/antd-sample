@@ -24,7 +24,7 @@ import { NzSelectItemInterface, NzSelectModeType } from '../select.types';
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
   templateUrl: './option-container.component.html',
-  host: { class: 'ant-select-dropdown' },
+  host: { class: 'wise-select-dropdown' },
 })
 export class NzOptionContainerComponent implements OnChanges, AfterViewInit {
   @Input() notFoundContent: string | TemplateRef<NzSafeAny> | undefined = undefined;

@@ -16,9 +16,9 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './select-item.component.html',
   host: {
-    class: 'ant-select-selection-item',
+    class: 'wise-select-selection-item',
     '[attr.title]': 'label',
-    '[class.ant-select-selection-item-disabled]': 'disabled',
+    '[class.wise-select-selection-item-disabled]': 'disabled',
   },
 })
 export class NzSelectItemComponent {

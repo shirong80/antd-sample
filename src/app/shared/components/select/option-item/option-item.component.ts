@@ -24,12 +24,12 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'ant-select-item ant-select-item-option',
+    class: 'wise-select-item wise-select-item-option',
     '[attr.title]': 'label',
-    '[class.ant-select-item-option-grouped]': 'grouped',
-    '[class.ant-select-item-option-selected]': 'selected && !disabled',
-    '[class.ant-select-item-option-disabled]': 'disabled',
-    '[class.ant-select-item-option-active]': 'activated && !disabled',
+    '[class.wise-select-item-option-grouped]': 'grouped',
+    '[class.wise-select-item-option-selected]': 'selected && !disabled',
+    '[class.wise-select-item-option-disabled]': 'disabled',
+    '[class.wise-select-item-option-active]': 'activated && !disabled',
   },
   providers: [NzDestroyService],
 })
