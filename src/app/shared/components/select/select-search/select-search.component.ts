@@ -20,7 +20,7 @@ import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './select-search.component.html',
-  host: { class: 'ant-select-selection-search' },
+  host: { class: 'wise-select-selection-search' },
   providers: [{ provide: COMPOSITION_BUFFER_MODE, useValue: false }],
 })
 export class NzSelectSearchComponent implements AfterViewInit, OnChanges {

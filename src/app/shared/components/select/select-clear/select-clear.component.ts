@@ -16,7 +16,7 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './select-clear.component.html',
   host: {
-    class: 'ant-select-clear',
+    class: 'wise-select-clear',
     '(click)': 'onClick($event)',
   },
 })

@@ -17,14 +17,14 @@
     context: { $implicit: contentTemplateOutletContext }
   "
 >
-  <div class="ant-select-selection-item-content" *ngIf="deletable; else labelTemplate">
+  <div class="wise-select-selection-item-content" *ngIf="deletable; else labelTemplate">
     {{ label }}
   </div>
   <ng-template #labelTemplate>{{ label }}</ng-template>
 </ng-container>
 <span
   *ngIf="deletable && !disabled"
-  class="ant-select-selection-item-remove"
+  class="wise-select-selection-item-remove"
   (click)="onDelete($event)"
 >
   <i nz-icon nzType="close" *ngIf="!removeIcon; else removeIcon"></i>

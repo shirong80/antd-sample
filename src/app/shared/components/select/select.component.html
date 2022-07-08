@@ -43,7 +43,7 @@
     $any(nzDropdownMatchSelectWidth ? triggerWidth : null)
   "
   [cdkConnectedOverlayOrigin]="origin"
-  [cdkConnectedOverlayTransformOriginOn]="'.ant-select-dropdown'"
+  [cdkConnectedOverlayTransformOriginOn]="'.wise-select-dropdown'"
   [cdkConnectedOverlayPanelClass]="nzDropdownClassName!"
   [cdkConnectedOverlayOpen]="nzOpen"
   (overlayOutsideClick)="onClickOutside($event)"
@@ -55,10 +55,10 @@
     [itemSize]="nzOptionHeightPx"
     [maxItemLength]="nzOptionOverflowSize"
     [matchWidth]="nzDropdownMatchSelectWidth"
-    [class.ant-select-dropdown-placement-bottomLeft]="
+    [class.wise-select-dropdown-placement-bottomLeft]="
       dropDownPosition === 'bottom'
     "
-    [class.ant-select-dropdown-placement-topLeft]="dropDownPosition === 'top'"
+    [class.wise-select-dropdown-placement-topLeft]="dropDownPosition === 'top'"
     [@slideMotion]="'enter'"
     [@.disabled]="noAnimation?.nzNoAnimation"
     [nzNoAnimation]="noAnimation?.nzNoAnimation"
