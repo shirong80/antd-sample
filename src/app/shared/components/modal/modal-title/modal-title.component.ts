@@ -12,7 +12,7 @@ import { ModalOptions } from '../modal-types';
   exportAs: 'NzModalTitleBuiltin',
   templateUrl: './modal-title.component.html',
   host: {
-    class: 'ant-modal-header',
+    class: 'wise-modal-header',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,15 +1,15 @@
 <div
   #modalElement
   role="document"
-  class="ant-modal"
+  class="wise-modal"
   [ngClass]="config.nzClassName!"
   [ngStyle]="config.nzStyle!"
   [style.width]="config?.nzWidth! | nzToCssUnit"
 >
-  <div class="ant-modal-content">
+  <div class="wise-modal-content">
     <button *ngIf="config.nzClosable" nz-modal-close (click)="onCloseClick()"></button>
     <div *ngIf="config.nzTitle" nz-modal-title></div>
-    <div class="ant-modal-body" [ngStyle]="config.nzBodyStyle!">
+    <div class="wise-modal-body" [ngStyle]="config.nzBodyStyle!">
       <ng-template cdkPortalOutlet></ng-template>
       <div *ngIf="isStringContent" [innerHTML]="config.nzContent"></div>
     </div>

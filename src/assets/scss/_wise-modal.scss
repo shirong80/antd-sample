@@ -1,0 +1,503 @@
+// TODO. [sample] -----------------------------------------------------------------
+// : X
+
+// TODO. [shared / modal] ---------------------------------------------------------
+//  [./modal-animations.ts] : X
+//* [./modal-config.ts]
+		//? - wise-zoom-enter
+		//? - wise-zoom-enter-active
+		//? - wise-zoom-leave
+		//? - wise-zoom-leave-active
+		//? - wise-fade-enter
+		//? - wise-fade-enter-active
+		//? - wise-fade-leave
+		//? - wise-fade-leave-active
+		//? - wise-modal-mask
+//  [./modal-legacy-api.ts] : X
+//  [./modal-ref.ts] : X
+//  [./modal-types.ts] : X
+//  [./modal.component.ts] : X
+//  [./modal.module.ts] : X
+// *[./modal.service.ts] : O
+		//? - wise-modal-confirm wise-modal-confirm-${confirmType} ${options.nzClassName || ''}
+		//? - confirmType : 'confirm' | 'info' | 'success' | 'error' | 'warning'
+//  [./utils.ts] : X
+// *[modal-close / modal-close.component.html] : O
+		//? - wise-modal-close-x
+		//? - wise-modal-close-icon
+// *[modal-close / modal-close.conponent.ts] : O
+		//? - wise-modal-close
+// *[modal-confirm-container / modal-confirm-container.component.html] : O
+		//? - wise-modal
+		//? - wise-modal-content
+		//? - wise-modal-body
+		//? - wise-modal-confirm-body-wrapper
+		//? - wise-modal-confirm-body
+		//? - wise-modal-confirm-title
+		//? - wise-modal-confirm-content
+		//? - wise-modal-confirm-btns
+// *[modal-confirm-container / modal-confirm-container.component.ts] : O
+		//? - wise-modal-wrap  + `config.nzWrapClassName`
+		//? - wise-modal-wrap
+		//? - wise-modal-wrap-rtl
+		//? - wise-modal-centered
+// *[modal-container / modal-container.component.html] : O
+		//? - wise-modal (중복)
+		//? - wise-modal-content (중복)
+		//? - wise-modal-body (중복)
+// *[modal-container / modal-container.component.ts] : O
+		//? - wise-modal-wrap  + `config.nzWrapClassName` (중복)
+		//? - wise-modal-wrap (중복)
+		//? - wise-modal-wrap-rtl (중복)
+		//? - wise-modal-centered (중복)
+//  [modal-container / modal-container.directive.ts]
+//  [modal-content / modal-content.directive.ts]
+//  [modal-footer / modal-footer.component.html]
+// *[modal-footer / modal-footer.component.ts] : O
+		//? - wise-modal-footer
+//  [modal-footer / modal-footer.directive.ts]
+// *[modal-title / modal-title.component.html] : O
+		//? - wise-modal-title
+// *[modal-title / modal-title.component.ts] : O
+		//? - wise-modal-header
+//  [modal-title / modal-title.directive.ts]?
+
+// ! 시-----------------------------------------------------------------------
+// ! 작-----------------------------------------------------------------------
+
+@keyframes antZoomIn {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes antZoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+@keyframes antFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes antFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+//* [./modal-config.ts]
+//? - wise-zoom-enter
+//? - wise-zoom-enter-active : wise-zoom-enter과 함께 쓰임
+.wise-zoom-enter,
+.ant-zoom-appear {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.wise-zoom-enter.wise-zoom-enter-active,
+.ant-zoom-appear.ant-zoom-appear-active {
+  animation-name: antZoomIn;
+  animation-play-state: running;
+}
+.wise-zoom-enter,
+.ant-zoom-appear {
+  transform: scale(0);
+  opacity: 0;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+
+//? - wise-zoom-leave
+//? - wise-zoom-leave-active : wise-zoom-leave와 함께 쓰임
+.wise-zoom-leave {
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+	animation-play-state: paused;
+}
+.wise-zoom-leave.wise-zoom-leave-active {
+  animation-name: antZoomOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.wise-zoom-leave {
+  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+//? - wise-fade-enter
+//? - wise-fade-enter-active : wise-fade-enter와 함께 쓰임
+.wise-fade-enter,
+.ant-fade-appear {
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+	animation-play-state: paused;
+}
+.wise-fade-enter.wise-fade-enter-active,
+.ant-fade-appear.ant-fade-appear-active {
+  animation-name: antFadeIn;
+  animation-play-state: running;
+}
+.wise-fade-enter,
+.ant-fade-appear {
+  opacity: 0;
+  animation-timing-function: linear;
+}
+
+//? - wise-fade-leave
+//? - wise-fade-leave-active : wise-fade-leave와 함께 쓰임
+.wise-fade-leave {
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+	animation-play-state: paused;
+}
+.wise-fade-leave.wise-fade-leave-active {
+  animation-name: antFadeOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.wise-fade-leave {
+  animation-timing-function: linear;
+}
+
+//? - wise-modal-mask
+.wise-modal-mask {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.45);
+}
+
+// *[./modal.service.ts]
+//? - wise-modal-confirm wise-modal-confirm-${confirmType} ${options.nzClassName || ''}
+			// (confirmType : 'confirm' | 'info' | 'success' | 'error' | 'warning')
+.wise-modal-confirm .wise-modal-header {
+	display: none;
+}
+.wise-modal-confirm .wise-modal-body {
+	padding: 32px 32px 24px;
+}
+.wise-modal-confirm .wise-modal-confirm-btns {
+  float: right;
+  margin-top: 24px;
+}
+.wise-modal-confirm .wise-modal-confirm-btns .ant-btn + .ant-btn {
+  margin-bottom: 0;
+  margin-left: 8px;
+}
+//! confirmType 중 error
+.wise-modal-confirm-error .wise-modal-confirm-body > .anticon {
+  color: #ff4d4f;
+}
+//! confirmType 중 warning, confirm
+.wise-modal-confirm-warning .wise-modal-confirm-body > .anticon,
+.wise-modal-confirm-confirm .wise-modal-confirm-body > .anticon {
+  color: #faad14;
+}
+//! confirmType 중 info
+.wise-modal-confirm-info .wise-modal-confirm-body > .anticon {
+  color: #1890ff;
+}
+//! confirmType 중 success
+.wise-modal-confirm-success .wise-modal-confirm-body > .anticon {
+  color: #52c41a;
+}
+
+// *[modal-close / modal-close.component.html]
+//? - wise-modal-close-x
+.wise-modal-close-x {
+  display: block;
+  width: 56px;
+  height: 56px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 56px;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+}
+//? - wise-modal-close-icon : 없음
+
+// *[modal-close / modal-close.conponent.ts]
+//? - wise-modal-close
+.wise-modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.wise-modal-close:focus,
+.wise-modal-close:hover {
+  color: rgba(0, 0, 0, 0.75);
+  text-decoration: none;
+}
+
+// *[modal-confirm-container / modal-confirm-container.component.html]
+//? - wise-modal : 제일 마지막에
+.wise-modal {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  pointer-events: none;
+  position: relative;
+  top: 100px;
+  width: auto;
+  max-width: calc(100vw - 32px);
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+.wise-modal.wise-zoom-enter,
+.wise-modal.antzoom-appear {
+  transform: none;
+  opacity: 0;
+  animation-duration: 0.3s;
+  user-select: none;
+}
+// 기타 (미사용)
+.nz-animate-disabled .wise-modal {
+  animation: none;
+  transition: none;
+}
+.nz-animate-disabled .ant-modal-mask.zoom-enter,
+.nz-animate-disabled .wise-modal.zoom-enter,
+.nz-animate-disabled .ant-modal-mask.zoom-leave,
+.nz-animate-disabled .wise-modal.zoom-leave,
+.nz-animate-disabled .ant-modal-mask.zoom-enter-active,
+.nz-animate-disabled .wise-modal.zoom-enter-active,
+.nz-animate-disabled .ant-modal-mask.zoom-leave-active,
+.nz-animate-disabled .wise-modal.zoom-leave-active {
+  animation: none;
+  transition: none;
+}
+
+//? - wise-modal-content
+.wise-modal-content {
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+}
+
+//? - wise-modal-body
+.wise-modal-body {
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.5715;
+  word-wrap: break-word;
+}
+
+//? - wise-modal-confirm-body-wrapper
+.wise-modal-confirm-body-wrapper::before {
+	display: table;
+	content: '';
+}
+.wise-modal-confirm-body-wrapper::after {
+	display: table;
+	clear: both;
+	content: '';
+}
+.wise-modal-confirm-body-wrapper::before {
+	display: table;
+	content: '';
+}
+.wise-modal-confirm-body-wrapper::after {
+	display: table;
+	clear: both;
+	content: '';
+}
+
+//? - wise-modal-confirm-body
+.wise-modal-confirm-body .wise-modal-confirm-title {
+	display: block;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0.85);
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 1.4;
+}
+.wise-modal-confirm-body .wise-modal-confirm-content {
+	margin-top: 8px;
+	color: rgba(0, 0, 0, 0.85);
+	font-size: 14px;
+}
+.wise-modal-confirm-body > .anticon {
+	float: left;
+	margin-right: 16px;
+	font-size: 22px;
+}
+.wise-modal-confirm-body > .anticon + .wise-modal-confirm-title + .wise-modal-confirm-content {
+	margin-left: 38px;
+}
+
+//? - wise-modal-confirm-title : rtl, confirm-body와 함께 쓰임
+
+//? - wise-modal-confirm-content : rtl, confirm-body와 함께 쓰임
+
+//? - wise-modal-confirm-btns : rtl, confirm과 함께 쓰임
+
+// *[modal-confirm-container / modal-confirm-container.component.ts]
+//? - wise-modal-wrap  + `config.nzWrapClassName`
+//? - wise-modal-wrap
+.wise-modal-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  outline: 0;
+  -webkit-overflow-scrolling: touch;
+	//! 수정
+	background-color: rgba(0, 0, 0, 0.45);
+}
+.wise-modal-wrap {
+  z-index: 1000;
+}
+
+//? - wise-modal-wrap-rtl
+.wise-modal-wrap-rtl {
+  direction: rtl;
+}
+.wise-modal-wrap-rtl .wise-modal-close {
+  right: initial;
+  left: 0;
+}
+.wise-modal-wrap-rtl .wise-modal-footer {
+  text-align: left;
+}
+.wise-modal-wrap-rtl .wise-modal-footer .ant-btn + .ant-btn {
+  margin-right: 8px;
+  margin-left: 0;
+}
+.wise-modal-wrap-rtl .wise-modal-confirm-body {
+  direction: rtl;
+}
+.wise-modal-wrap-rtl .wise-modal-confirm-body > .anticon {
+  float: right;
+  margin-right: 0;
+  margin-left: 16px;
+}
+.wise-modal-wrap-rtl .wise-modal-confirm-body > .anticon + .wise-modal-confirm-title + .wise-modal-confirm-content {
+  margin-right: 38px;
+  margin-left: 0;
+}
+.wise-modal-wrap-rtl .wise-modal-confirm-btns {
+  float: left;
+}
+.wise-modal-wrap-rtl .wise-modal-confirm-btns .ant-btn + .ant-btn {
+  margin-right: 8px;
+  margin-left: 0;
+}
+.wise-modal-wrap-rtl.wise-modal-centered .wise-modal {
+  text-align: right;
+}
+
+//? - wise-modal-centered
+.wise-modal-centered {
+  text-align: center;
+}
+.wise-modal-centered::before {
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+  content: '';
+}
+.wise-modal-centered .wise-modal {
+  top: 0;
+  display: inline-block;
+  padding-bottom: 0;
+  text-align: left;
+  vertical-align: middle;
+}
+@media (max-width: 767px) {
+  .wise-modal {
+    max-width: calc(100vw - 16px);
+    margin: 8px auto;
+  }
+  .wise-modal-centered .wise-modal {
+    flex: 1;
+  }
+}
+
+// *[modal-container / modal-container.component.html]
+//? - wise-modal (중복)
+//? - wise-modal-content (중복)
+//? - wise-modal-body (중복)
+
+// *[modal-container / modal-container.component.ts]
+//? - wise-modal-wrap  + `config.nzWrapClassName` (중복)
+//? - wise-modal-wrap (중복)
+//? - wise-modal-wrap-rtl (중복)
+//? - wise-modal-centered (중복)
+
+// *[modal-footer / modal-footer.component.ts]
+//? - wise-modal-footer
+.wise-modal-footer {
+  padding: 10px 16px;
+  text-align: right;
+  background: transparent;
+  border-top: 1px solid #f0f0f0;
+  border-radius: 0 0 2px 2px;
+}
+.wise-modal-footer .ant-btn + .ant-btn:not(.ant-dropdown-trigger) {
+  margin-bottom: 0;
+  margin-left: 8px;
+}
+
+// *[modal-title / modal-title.component.html]
+//? - wise-modal-title
+.wise-modal-title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  word-wrap: break-word;
+}
+
+// *[modal-title / modal-title.component.ts]
+//? - wise-modal-header
+.wise-modal-header {
+  padding: 16px 24px;
+  color: rgba(0, 0, 0, 0.85);
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 2px 2px 0 0;
+}
