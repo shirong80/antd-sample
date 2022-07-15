@@ -1,70 +1,3 @@
-// TODO. [sample] -----------------------------------------------------------------
-// : X
-
-// TODO. [shared / modal] ---------------------------------------------------------
-//  [./modal-animations.ts] : X
-//* [./modal-config.ts]
-		//? - wise-zoom-enter
-		//? - wise-zoom-enter-active
-		//? - wise-zoom-leave
-		//? - wise-zoom-leave-active
-		//? - wise-fade-enter
-		//? - wise-fade-enter-active
-		//? - wise-fade-leave
-		//? - wise-fade-leave-active
-		//? - wise-modal-mask
-//  [./modal-legacy-api.ts] : X
-//  [./modal-ref.ts] : X
-//  [./modal-types.ts] : X
-//  [./modal.component.ts] : X
-//  [./modal.module.ts] : X
-// *[./modal.service.ts] : O
-		//? - wise-modal-confirm wise-modal-confirm-${confirmType} ${options.nzClassName || ''}
-		//? - confirmType : 'confirm' | 'info' | 'success' | 'error' | 'warning'
-//  [./utils.ts] : X
-// *[modal-close / modal-close.component.html] : O
-		//? - wise-modal-close-x
-		//? - wise-modal-close-icon
-// *[modal-close / modal-close.conponent.ts] : O
-		//? - wise-modal-close
-// *[modal-confirm-container / modal-confirm-container.component.html] : O
-		//? - wise-modal
-		//? - wise-modal-content
-		//? - wise-modal-body
-		//? - wise-modal-confirm-body-wrapper
-		//? - wise-modal-confirm-body
-		//? - wise-modal-confirm-title
-		//? - wise-modal-confirm-content
-		//? - wise-modal-confirm-btns
-// *[modal-confirm-container / modal-confirm-container.component.ts] : O
-		//? - wise-modal-wrap  + `config.nzWrapClassName`
-		//? - wise-modal-wrap
-		//? - wise-modal-wrap-rtl
-		//? - wise-modal-centered
-// *[modal-container / modal-container.component.html] : O
-		//? - wise-modal (중복)
-		//? - wise-modal-content (중복)
-		//? - wise-modal-body (중복)
-// *[modal-container / modal-container.component.ts] : O
-		//? - wise-modal-wrap  + `config.nzWrapClassName` (중복)
-		//? - wise-modal-wrap (중복)
-		//? - wise-modal-wrap-rtl (중복)
-		//? - wise-modal-centered (중복)
-//  [modal-container / modal-container.directive.ts]
-//  [modal-content / modal-content.directive.ts]
-//  [modal-footer / modal-footer.component.html]
-// *[modal-footer / modal-footer.component.ts] : O
-		//? - wise-modal-footer
-//  [modal-footer / modal-footer.directive.ts]
-// *[modal-title / modal-title.component.html] : O
-		//? - wise-modal-title
-// *[modal-title / modal-title.component.ts] : O
-		//? - wise-modal-header
-//  [modal-title / modal-title.directive.ts]?
-
-// ! 시-----------------------------------------------------------------------
-// ! 작-----------------------------------------------------------------------
-
 @keyframes antZoomIn {
   0% {
     transform: scale(0.2);
@@ -104,19 +37,16 @@
 //* [./modal-config.ts]
 //? - wise-zoom-enter
 //? - wise-zoom-enter-active : wise-zoom-enter과 함께 쓰임
-.wise-zoom-enter,
-.ant-zoom-appear {
+.wise-zoom-enter {
   animation-duration: 0.2s;
   animation-fill-mode: both;
   animation-play-state: paused;
+	&.wise-zoom-enter-active {
+		animation-name: antZoomIn;
+		animation-play-state: running;
+	}
 }
-.wise-zoom-enter.wise-zoom-enter-active,
-.ant-zoom-appear.ant-zoom-appear-active {
-  animation-name: antZoomIn;
-  animation-play-state: running;
-}
-.wise-zoom-enter,
-.ant-zoom-appear {
+.wise-zoom-enter {
   transform: scale(0);
   opacity: 0;
   animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
@@ -128,11 +58,11 @@
 	animation-duration: 0.2s;
 	animation-fill-mode: both;
 	animation-play-state: paused;
-}
-.wise-zoom-leave.wise-zoom-leave-active {
-  animation-name: antZoomOut;
-  animation-play-state: running;
-  pointer-events: none;
+	&.wise-zoom-leave-active {
+		animation-name: antZoomOut;
+		animation-play-state: running;
+		pointer-events: none;
+	}
 }
 .wise-zoom-leave {
   animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
@@ -140,19 +70,16 @@
 
 //? - wise-fade-enter
 //? - wise-fade-enter-active : wise-fade-enter와 함께 쓰임
-.wise-fade-enter,
-.ant-fade-appear {
+.wise-fade-enter {
 	animation-duration: 0.2s;
 	animation-fill-mode: both;
 	animation-play-state: paused;
+	&.wise-fade-enter-active {
+		animation-name: antFadeIn;
+		animation-play-state: running;
+	}
 }
-.wise-fade-enter.wise-fade-enter-active,
-.ant-fade-appear.ant-fade-appear-active {
-  animation-name: antFadeIn;
-  animation-play-state: running;
-}
-.wise-fade-enter,
-.ant-fade-appear {
+.wise-fade-enter {
   opacity: 0;
   animation-timing-function: linear;
 }
@@ -163,11 +90,11 @@
 	animation-duration: 0.2s;
 	animation-fill-mode: both;
 	animation-play-state: paused;
-}
-.wise-fade-leave.wise-fade-leave-active {
-  animation-name: antFadeOut;
-  animation-play-state: running;
-  pointer-events: none;
+	&.wise-fade-leave-active {
+		animation-name: antFadeOut;
+		animation-play-state: running;
+		pointer-events: none;
+	}
 }
 .wise-fade-leave {
   animation-timing-function: linear;
@@ -188,34 +115,36 @@
 // *[./modal.service.ts]
 //? - wise-modal-confirm wise-modal-confirm-${confirmType} ${options.nzClassName || ''}
 			// (confirmType : 'confirm' | 'info' | 'success' | 'error' | 'warning')
-.wise-modal-confirm .wise-modal-header {
-	display: none;
+.wise-modal-confirm {
+	.wise-modal-header {
+		display: none;
+	}
+	.wise-modal-body {
+		padding: 32px 32px 24px;
+	}
+	.wise-modal-confirm-btns {
+		float: right;
+		margin-top: 24px;
+		.ant-btn + .ant-btn {
+			margin-bottom: 0;
+			margin-left: 8px;
+		}
+	}
 }
-.wise-modal-confirm .wise-modal-body {
-	padding: 32px 32px 24px;
-}
-.wise-modal-confirm .wise-modal-confirm-btns {
-  float: right;
-  margin-top: 24px;
-}
-.wise-modal-confirm .wise-modal-confirm-btns .ant-btn + .ant-btn {
-  margin-bottom: 0;
-  margin-left: 8px;
-}
-//! confirmType 중 error
+// confirmType 중 error
 .wise-modal-confirm-error .wise-modal-confirm-body > .anticon {
   color: #ff4d4f;
 }
-//! confirmType 중 warning, confirm
+// confirmType 중 warning, confirm
 .wise-modal-confirm-warning .wise-modal-confirm-body > .anticon,
 .wise-modal-confirm-confirm .wise-modal-confirm-body > .anticon {
   color: #faad14;
 }
-//! confirmType 중 info
+// confirmType 중 info
 .wise-modal-confirm-info .wise-modal-confirm-body > .anticon {
   color: #1890ff;
 }
-//! confirmType 중 success
+// confirmType 중 success
 .wise-modal-confirm-success .wise-modal-confirm-body > .anticon {
   color: #52c41a;
 }
@@ -252,11 +181,10 @@
   outline: 0;
   cursor: pointer;
   transition: color 0.3s;
-}
-.wise-modal-close:focus,
-.wise-modal-close:hover {
-  color: rgba(0, 0, 0, 0.75);
-  text-decoration: none;
+	&:focus, &:hover {
+		color: rgba(0, 0, 0, 0.75);
+		text-decoration: none;
+	}
 }
 
 // *[modal-confirm-container / modal-confirm-container.component.html]
@@ -278,19 +206,16 @@
   max-width: calc(100vw - 32px);
   margin: 0 auto;
   padding-bottom: 24px;
-}
-.wise-modal.wise-zoom-enter,
-.wise-modal.antzoom-appear {
-  transform: none;
-  opacity: 0;
-  animation-duration: 0.3s;
-  user-select: none;
+	&.wise-zoom-enter,
+	&.antzoom-appear {
+		transform: none;
+		opacity: 0;
+		animation-duration: 0.3s;
+		user-select: none;
+	}
 }
 // 기타 (미사용)
-.nz-animate-disabled .wise-modal {
-  animation: none;
-  transition: none;
-}
+.nz-animate-disabled .wise-modal,
 .nz-animate-disabled .ant-modal-mask.zoom-enter,
 .nz-animate-disabled .wise-modal.zoom-enter,
 .nz-animate-disabled .ant-modal-mask.zoom-leave,
@@ -323,46 +248,41 @@
 }
 
 //? - wise-modal-confirm-body-wrapper
-.wise-modal-confirm-body-wrapper::before {
-	display: table;
-	content: '';
-}
-.wise-modal-confirm-body-wrapper::after {
-	display: table;
-	clear: both;
-	content: '';
-}
-.wise-modal-confirm-body-wrapper::before {
-	display: table;
-	content: '';
-}
-.wise-modal-confirm-body-wrapper::after {
-	display: table;
-	clear: both;
-	content: '';
+.wise-modal-confirm-body-wrapper {
+	&::before {
+		display: table;
+		content: '';
+	}
+	&::after {
+		display: table;
+		clear: both;
+		content: '';
+	}
 }
 
 //? - wise-modal-confirm-body
-.wise-modal-confirm-body .wise-modal-confirm-title {
-	display: block;
-	overflow: hidden;
-	color: rgba(0, 0, 0, 0.85);
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 1.4;
-}
-.wise-modal-confirm-body .wise-modal-confirm-content {
-	margin-top: 8px;
-	color: rgba(0, 0, 0, 0.85);
-	font-size: 14px;
-}
-.wise-modal-confirm-body > .anticon {
-	float: left;
-	margin-right: 16px;
-	font-size: 22px;
-}
-.wise-modal-confirm-body > .anticon + .wise-modal-confirm-title + .wise-modal-confirm-content {
-	margin-left: 38px;
+.wise-modal-confirm-body {
+	.wise-modal-confirm-title {
+		display: block;
+		overflow: hidden;
+		color: rgba(0, 0, 0, 0.85);
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 1.4;
+	}
+	.wise-modal-confirm-content {
+		margin-top: 8px;
+		color: rgba(0, 0, 0, 0.85);
+		font-size: 14px;
+	}
+	> .anticon {
+		float: left;
+		margin-right: 16px;
+		font-size: 22px;
+		+ .wise-modal-confirm-title + .wise-modal-confirm-content {
+			margin-left: 38px;
+		}
+	}
 }
 
 //? - wise-modal-confirm-title : rtl, confirm-body와 함께 쓰임
@@ -393,58 +313,58 @@
 //? - wise-modal-wrap-rtl
 .wise-modal-wrap-rtl {
   direction: rtl;
-}
-.wise-modal-wrap-rtl .wise-modal-close {
-  right: initial;
-  left: 0;
-}
-.wise-modal-wrap-rtl .wise-modal-footer {
-  text-align: left;
-}
-.wise-modal-wrap-rtl .wise-modal-footer .ant-btn + .ant-btn {
-  margin-right: 8px;
-  margin-left: 0;
-}
-.wise-modal-wrap-rtl .wise-modal-confirm-body {
-  direction: rtl;
-}
-.wise-modal-wrap-rtl .wise-modal-confirm-body > .anticon {
-  float: right;
-  margin-right: 0;
-  margin-left: 16px;
-}
-.wise-modal-wrap-rtl .wise-modal-confirm-body > .anticon + .wise-modal-confirm-title + .wise-modal-confirm-content {
-  margin-right: 38px;
-  margin-left: 0;
-}
-.wise-modal-wrap-rtl .wise-modal-confirm-btns {
-  float: left;
-}
-.wise-modal-wrap-rtl .wise-modal-confirm-btns .ant-btn + .ant-btn {
-  margin-right: 8px;
-  margin-left: 0;
-}
-.wise-modal-wrap-rtl.wise-modal-centered .wise-modal {
-  text-align: right;
+	.wise-modal-close {
+		right: initial;
+		left: 0;
+	}
+	.wise-modal-footer {
+		text-align: left;
+		.ant-btn + .ant-btn {
+			margin-right: 8px;
+			margin-left: 0;
+		}
+	}
+	.wise-modal-confirm-body {
+		direction: rtl;
+		> .anticon {
+			float: right;
+			margin-right: 0;
+			margin-left: 16px;
+			+ .wise-modal-confirm-title + .wise-modal-confirm-content {
+				margin-right: 38px;
+				margin-left: 0;
+			}
+		}
+	}
+	.wise-modal-confirm-btns {
+		float: left;
+		.ant-btn + .ant-btn {
+			margin-right: 8px;
+			margin-left: 0;
+		}
+	}
+	&.wise-modal-centered .wise-modal {
+		text-align: right;
+	}
 }
 
 //? - wise-modal-centered
 .wise-modal-centered {
   text-align: center;
-}
-.wise-modal-centered::before {
-  display: inline-block;
-  width: 0;
-  height: 100%;
-  vertical-align: middle;
-  content: '';
-}
-.wise-modal-centered .wise-modal {
-  top: 0;
-  display: inline-block;
-  padding-bottom: 0;
-  text-align: left;
-  vertical-align: middle;
+	&::before {
+		display: inline-block;
+		width: 0;
+		height: 100%;
+		vertical-align: middle;
+		content: '';
+	}
+	.wise-modal {
+		top: 0;
+		display: inline-block;
+		padding-bottom: 0;
+		text-align: left;
+		vertical-align: middle;
+	}
 }
 @media (max-width: 767px) {
   .wise-modal {
@@ -475,10 +395,10 @@
   background: transparent;
   border-top: 1px solid #f0f0f0;
   border-radius: 0 0 2px 2px;
-}
-.wise-modal-footer .ant-btn + .ant-btn:not(.ant-dropdown-trigger) {
-  margin-bottom: 0;
-  margin-left: 8px;
+	.ant-btn + .ant-btn:not(.ant-dropdown-trigger) {
+		margin-bottom: 0;
+		margin-left: 8px;
+	}
 }
 
 // *[modal-title / modal-title.component.html]
