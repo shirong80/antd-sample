@@ -162,7 +162,10 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
       const config = this.getConfig();
       this.modalRef = this.modal.create(config);
 
-      // When the modal is implicitly closed (e.g. closeAll) the nzVisible needs to be set to the correct value and emit.
+      // When the modal is implicitly closed (e.g. closeAll)
+      // the nzVisible needs to be set to the correct value and emit.
+      // ? 서비스를 통한 closeAll() 등 액션이 발생할 경우,
+      // ? 아래 구독이 작동하여 nzVisible 값을 모달 상태랑 동기화 시킨다.
       this.modalRef.afterClose
         .asObservable()
         .pipe(takeUntil(this.destroy$))
@@ -244,6 +247,8 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
    */
   private getConfig(): ModalOptions {
     const componentConfig = getConfigFromComponent(this);
+    // ? <nz-modal> 방식으로 modal 을 호출할때에는
+    // ? this.viewContainerRef 가 config.nzViewContainerRef 에 세팅된다.
     componentConfig.nzViewContainerRef = this.viewContainerRef;
     componentConfig.nzContent = this.nzContent || this.contentFromContentChild;
     return componentConfig;
@@ -267,7 +272,13 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
     }
   }
 
+  /**
+   * * NzModalComponent 가 destroy 될때 실행된다.
+   * ? <nz-modal> 태그로 modal 을 생성할 경우 해당 컴포넌트는 modal 이 닫혀도 destroy 되지 않는다.
+   * ? 페이지 이동 같은 호출부 컴포넌트가 destroy 되어야지 해당 컴포넌트도 destroy 된다.
+   */
   ngOnDestroy(): void {
+    // ? 모달이 닫히는 최종단계는 항상 ref._finishDialogClose() 함수이다.
     this.modalRef?._finishDialogClose();
     this.destroy$.next();
     this.destroy$.complete();
