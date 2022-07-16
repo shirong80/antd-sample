@@ -13,7 +13,7 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './select-placeholder.component.html',
-  host: { class: 'ant-select-selection-placeholder' },
+  host: { class: 'wise-select-selection-placeholder' },
 })
 export class NzSelectPlaceholderComponent {
   @Input() placeholder: TemplateRef<NzSafeAny> | string | null = null;

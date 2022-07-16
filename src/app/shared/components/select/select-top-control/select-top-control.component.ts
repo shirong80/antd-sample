@@ -37,7 +37,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: './select-top-control.component.html',
-  host: { class: 'ant-select-selector' },
+  host: { class: 'wise-select-selector' },
 })
 export class NzSelectTopControlComponent implements OnChanges, OnInit, OnDestroy {
   @Input() nzId: string | null = null;

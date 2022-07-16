@@ -14,8 +14,8 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './select-arrow.component.html',
   host: {
-    class: 'ant-select-arrow',
-    '[class.ant-select-arrow-loading]': 'loading',
+    class: 'wise-select-arrow',
+    '[class.wise-select-arrow-loading]': 'loading',
   },
 })
 export class NzSelectArrowComponent {

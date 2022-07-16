@@ -16,7 +16,7 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'ant-select-item ant-select-item-group',
+    class: 'wise-select-item wise-select-item-group',
   },
 })
 export class NzOptionItemGroupComponent {

@@ -91,19 +91,19 @@ export type NzSelectSizeType = 'large' | 'default' | 'small';
   animations: [slideMotion],
   templateUrl: './select.component.html',
   host: {
-    class: 'ant-select',
-    '[class.ant-select-lg]': 'nzSize === "large"',
-    '[class.ant-select-sm]': 'nzSize === "small"',
-    '[class.ant-select-show-arrow]': `nzShowArrow`,
-    '[class.ant-select-disabled]': 'nzDisabled',
-    '[class.ant-select-show-search]': `(nzShowSearch || nzMode !== 'default') && !nzDisabled`,
-    '[class.ant-select-allow-clear]': 'nzAllowClear',
-    '[class.ant-select-borderless]': 'nzBorderless',
-    '[class.ant-select-open]': 'nzOpen',
-    '[class.ant-select-focused]': 'nzOpen || focused',
-    '[class.ant-select-single]': `nzMode === 'default'`,
-    '[class.ant-select-multiple]': `nzMode !== 'default'`,
-    '[class.ant-select-rtl]': `dir === 'rtl'`,
+    class: 'wise-select',
+    '[class.wise-select-lg]': 'nzSize === "large"',
+    '[class.wise-select-sm]': 'nzSize === "small"',
+    '[class.wise-select-show-arrow]': `nzShowArrow`,
+    '[class.wise-select-disabled]': 'nzDisabled',
+    '[class.wise-select-show-search]': `(nzShowSearch || nzMode !== 'default') && !nzDisabled`,
+    '[class.wise-select-allow-clear]': 'nzAllowClear',
+    '[class.wise-select-borderless]': 'nzBorderless',
+    '[class.wise-select-open]': 'nzOpen',
+    '[class.wise-select-focused]': 'nzOpen || focused',
+    '[class.wise-select-single]': `nzMode === 'default'`,
+    '[class.wise-select-multiple]': `nzMode !== 'default'`,
+    '[class.wise-select-rtl]': `dir === 'rtl'`,
   },
 })
 export class NzSelectComponent
@@ -212,7 +212,7 @@ export class NzSelectComponent
   dir: Direction = 'ltr';
 
   // status
-  prefixCls: string = 'ant-select';
+  prefixCls: string = 'wise-select';
   statusCls: NgClassInterface = {};
   hasFeedback: boolean = false;
 
