@@ -46,6 +46,7 @@ export class NzModalRef<T = NzSafeAny, R = NzSafeAny> implements NzModalLegacyAP
     // ? 모달이 열린 직후 시점에 트리거 된다.
     containerInstance.animationStateChanged
       .pipe(
+        // onAnimationDone() 에서 toState === 'enter' 일때 호출된다.
         filter((event) => event.phaseName === 'done' && event.toState === 'enter'),
         take(1),
       )
@@ -60,6 +61,7 @@ export class NzModalRef<T = NzSafeAny, R = NzSafeAny> implements NzModalLegacyAP
     // ? 모달이 닫힌 직후 시점에 트리거 된다.
     containerInstance.animationStateChanged
       .pipe(
+        // onAnimationDone() 에서 toState === 'exit' 일때 호출된다.
         filter((event) => event.phaseName === 'done' && event.toState === 'exit'),
         take(1),
       )

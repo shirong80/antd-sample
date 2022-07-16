@@ -48,6 +48,7 @@ export function throwNzModalContentAlreadyAttachedError(): never {
 
 @Directive()
 export class BaseModalContainerComponent extends BasePortalOutlet implements OnDestroy {
+  // ? 자식 클래스에서 override 된다.
   portalOutlet!: CdkPortalOutlet;
   modalElementRef!: ElementRef<HTMLDivElement>;
 
@@ -325,6 +326,7 @@ export class BaseModalContainerComponent extends BasePortalOutlet implements OnD
     }
   }
 
+  // ! 자식 컴포넌트들에 animations 데코레이터가 정의되어 있다.
   onAnimationDone(event: AnimationEvent): void {
     if (event.toState === 'enter') {
       this.trapFocus();

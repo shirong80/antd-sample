@@ -29,6 +29,9 @@ type ContentType<T> = ComponentType<T> | TemplateRef<T> | string;
 
 @Injectable()
 export class NzModalService implements OnDestroy {
+  // ? 현재 레벨에서 열려있는 모든 모달들의 리스트
+  // ! 다른 레벨에서 모달이 열릴 경우에는 새로운 서비스 인스턴스가 생성되나?? 확인필요!!!
+  // * 새로운 서비스 인스턴스가 생성되는거 같다. 생성자 함수에서 parentModal 이라는 NzModalService 를 주입받는다.
   private openModalsAtThisLevel: NzModalRef[] = [];
   private readonly afterAllClosedAtThisLevel = new Subject<void>();
 
@@ -55,6 +58,8 @@ export class NzModalService implements OnDestroy {
     @Optional() private directionality: Directionality,
   ) {}
 
+  // ? T 는 nzContent 의 타입이다.
+  // ? T 가 Component, TemplateRef, string 등 타입일수 있다.
   create<T, R = NzSafeAny>(config: ModalOptions<T, R>): NzModalRef<T, R> {
     return this.open<T, R>(config.nzContent as ComponentType<T>, config);
   }
@@ -135,6 +140,9 @@ export class NzModalService implements OnDestroy {
   private closeModals(dialogs: NzModalRef[]): void {
     let i = dialogs.length;
     while (i--) {
+      // ? 아래에서 NzModelRef.close() 호출시,
+      // ? NzModalService.removeOpenModal() 함수도 호출되면서,
+      // ? this.openModals 리스트에서 해당 modelRef 를 제거한다.
       dialogs[i].close();
       if (!this.openModals.length) {
         this._afterAllClosed.next();
@@ -142,13 +150,18 @@ export class NzModalService implements OnDestroy {
     }
   }
 
+  /**
+   * * cdk 에서 제공하는 Overlay.create() 사용하여, OverlayRef 를 생성한다.
+   */
   private createOverlay(config: ModalOptions): OverlayRef {
     const globalConfig: NzSafeAny =
       this.nzConfigService.getConfigForComponent(NZ_CONFIG_MODULE_NAME) || {};
+    // ? ckd 에서 제공하는 OverlayConfig 클래스의 인스턴스를 생성한다.
     const overlayConfig = new OverlayConfig({
       hasBackdrop: true,
       scrollStrategy: this.overlay.scrollStrategies.block(),
       positionStrategy: this.overlay.position().global(),
+      // getValueWithConfig() 는 파라미터들을 순차적을 체크하면서, undefinded가 아닌 값을 반환한다.
       disposeOnNavigation: getValueWithConfig(
         config.nzCloseOnNavigation,
         globalConfig.nzCloseOnNavigation,
@@ -167,12 +180,20 @@ export class NzModalService implements OnDestroy {
     return this.overlay.create(overlayConfig);
   }
 
+  /**
+   * * BaseModalContainerComponent 타입의 modal-container 를 생성한다.
+   * * cdk 에서 제공하는 Portal 이랑 Overlay 를 함께 사용한다.
+   * @param overlayRef
+   * @param config
+   * @returns
+   */
   private attachModalContainer(
     overlayRef: OverlayRef,
     config: ModalOptions,
   ): BaseModalContainerComponent {
     const userInjector =
       config && config.nzViewContainerRef && config.nzViewContainerRef.injector;
+    // overlayRef에서 getDirection(), backdropElement 를 사용하기 위해서 container 에 주입시킨다.
     const injector = Injector.create({
       parent: userInjector || this.injector,
       providers: [
@@ -188,16 +209,31 @@ export class NzModalService implements OnDestroy {
         : // If the mode is not `confirm`, use `NzModalContainerComponent`
           NzModalContainerComponent;
 
+    // ? cdk 에서 제공하는 ComponentPortal 클래스의 인스턴스를 생성한다.
+    // ? 첫번째 Param: 동적으로 생성할 컴포넌트 타입
+    // ? 두번재 Param: 동적으로 생성된 컴포넌트가 배치될 위치 (여기서는 modal.component 의 viewContainerRef 이다.)
+    // ? 세번째 Param: 동적으로 생성할 컴포넌트에 주입될 인젝터
+    // ! 생성된 ComponentPortal 은 반드시 어딘가에 attach 해줘야 한다.
+    // * modal.component 의 viewContainerRef 안에 ContainerComponent 를 동적으로 생성해서 집어넣는다.
     const containerPortal = new ComponentPortal<BaseModalContainerComponent>(
       ContainerComponent,
       config.nzViewContainerRef,
       injector,
     );
+    // ? 생성된 Portal 을 Overlay 에 집어 넣는다.
     const containerRef = overlayRef.attach<BaseModalContainerComponent>(containerPortal);
 
     return containerRef.instance;
   }
 
+  /**
+   * * NzModalRef 타입의 modelRef 를 생성한다.
+   * @param componentOrTemplateRef
+   * @param modalContainer
+   * @param overlayRef
+   * @param config
+   * @returns
+   */
   private attachModalContent<T, R>(
     componentOrTemplateRef: ContentType<T>,
     modalContainer: BaseModalContainerComponent,
@@ -206,7 +242,10 @@ export class NzModalService implements OnDestroy {
   ): NzModalRef<T, R> {
     const modalRef = new NzModalRef<T, R>(overlayRef, config, modalContainer);
 
+    // ? modalContainer 템플릿에서 div.ant-modal-content 엘리먼트 하위에 *cdkPortalOutlet 이 있다.
+    // ? 해당 portalOutlet 에 componentOrTemplateRef 가 랜더링 된다.
     if (componentOrTemplateRef instanceof TemplateRef) {
+      // * 템플릿 타입의 content
       modalContainer.attachTemplatePortal(
         new TemplatePortal<T>(componentOrTemplateRef, null!, {
           $implicit: config.nzComponentParams,
@@ -217,6 +256,9 @@ export class NzModalService implements OnDestroy {
       isNotNil(componentOrTemplateRef) &&
       typeof componentOrTemplateRef !== 'string'
     ) {
+      // * 컴포넌트 타입의 content
+      // ? content 컴포넌트의 인젝터를 생성한다.
+      // ! content 컴포넌트에 NzModalRef provider 를 주입하는 부분이 있다는것을 명심하자.
       const injector = this.createInjector<T, R>(modalRef, config);
       const contentRef = modalContainer.attachComponentPortal<T>(
         new ComponentPortal(componentOrTemplateRef, config.nzViewContainerRef, injector),
@@ -224,6 +266,7 @@ export class NzModalService implements OnDestroy {
       setContentInstanceParams<T>(contentRef.instance, config.nzComponentParams);
       modalRef.componentInstance = contentRef.instance;
     } else {
+      // * string 타입의 content
       modalContainer.attachStringContent();
     }
     return modalRef;

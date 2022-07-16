@@ -10,7 +10,9 @@
     <button *ngIf="config.nzClosable" nz-modal-close (click)="onCloseClick()"></button>
     <div *ngIf="config.nzTitle" nz-modal-title></div>
     <div class="wise-modal-body" [ngStyle]="config.nzBodyStyle!">
-      <ng-template cdkPortalOutlet></ng-template>
+      <ng-template cdkPortalOutlet>
+        <!-- 커스텀 컴포넌트를 랜더링 하는 위치 -->
+      </ng-template>
       <div *ngIf="isStringContent" [innerHTML]="config.nzContent"></div>
     </div>
     <div

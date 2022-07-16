@@ -110,6 +110,7 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
   @Output() readonly nzAfterClose = new EventEmitter<R>();
   @Output() readonly nzVisibleChange = new EventEmitter<boolean>();
 
+  // ? title 이 디렉티브로 <nz-modal> 안에 선언되었을 경우
   @ContentChild(NzModalTitleDirective, { static: true, read: TemplateRef })
   set modalTitle(value: TemplateRef<NzSafeAny>) {
     if (value) {
@@ -117,9 +118,11 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
     }
   }
 
+  // ? content 가 디렉티브로 <nz-modal> 안에 선언되었을 경우
   @ContentChild(NzModalContentDirective, { static: true, read: TemplateRef })
   contentFromContentChild!: TemplateRef<NzSafeAny>;
 
+  // ? footer 가 디렉티브로 <nz-modal> 안에 선언되었을 경우
   @ContentChild(NzModalFooterDirective, { static: true, read: TemplateRef })
   set modalFooter(value: TemplateRef<NzSafeAny>) {
     if (value) {
@@ -142,7 +145,10 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
 
   constructor(
     private cdr: ChangeDetectorRef,
+    // NzModalService 는 NzModalModule 에 provide 되어있다.
     private modal: NzModalService,
+    // <nz-modal> 방식으로 modal 을 호출할때에는
+    // 아래의 viewContainerRef 가 config.nzViewContainerRef 에 세팅된다.
     private viewContainerRef: ViewContainerRef,
   ) {}
 
@@ -206,6 +212,8 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
     this.nzTitle = templateRef;
     if (this.modalRef) {
       // If modalRef already created, set the title in next tick
+      // ? Promise 를 사용하여 실행부분은 microtask 에 넣어서, 다음 tick 에서 title 이 세팅되게 한다.
+      // ! modalRef 에서 모든 준비가 끝나기를 기다리는 느낌? 이다.
       Promise.resolve().then(() => {
         this.modalRef!.updateConfig({
           nzTitle: this.nzTitle,
@@ -228,6 +236,12 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
     this.cdr.markForCheck();
   }
 
+  /**
+   * * open() 함수에서 NzModalRef 를 생성할때 사용된다.
+   * ? 현재 생성된 컴포넌트 인스턴스의 모든 Input() 을 뽑아낸다.
+   * ? Input() 항목들에서 nzViewcontainerRef, nzContent 를 재설정해준다.
+   * @returns
+   */
   private getConfig(): ModalOptions {
     const componentConfig = getConfigFromComponent(this);
     componentConfig.nzViewContainerRef = this.viewContainerRef;
@@ -238,10 +252,12 @@ export class NzModalComponent<T = NzSafeAny, R = NzSafeAny>
   ngOnChanges(changes: SimpleChanges): void {
     const { nzVisible, ...otherChanges } = changes;
 
+    //? nzVisibel 제외한 기타 Input() 항목들이 변경됐을 경우
     if (Object.keys(otherChanges).length && this.modalRef) {
       this.modalRef.updateConfig(getConfigFromComponent(this));
     }
 
+    // ? nzVisible 항목이 변경됐을 경우
     if (nzVisible) {
       if (this.nzVisible) {
         this.open();
