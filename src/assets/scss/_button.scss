@@ -1,0 +1,2188 @@
+// [shared / button / button-group.html ]
+//* 1. wise-btn-group
+//* 2. wise-btn-group-lg
+//* 3. wise-btn-group-sm
+//* 4. wise-btn-group-rtl
+
+// [shared / button / button.ts ]
+//* 1. wise-btn
+//* 2. wise-btn-primary
+//* 3. wise-btn-dashed
+//* 4. wise-btn-link
+//* 5. wise-btn-text
+//* 6. wise-btn-circle
+//* 7. wise-btn-round
+//* 8. wise-btn-lg
+//* 9. wise-btn-sm
+//* 10. wise-btn-dangerous
+//* 11. wise-btn-loading
+//* 12. wise-btn-background-ghost
+//* 13. wise-btn-block
+//* 14. wise-input-search-button
+//* 15. wise-btn-rtl
+//* 16. wise-btn-icon-only
+
+
+// TODO. [shared / button / button-group.html ] ///////////////////////////////////////
+
+//? 1. btn-group ----------------------------------------------------------------
+
+.wise-btn-group {
+
+  position: relative;
+  display: inline-flex;
+
+  .wise-btn-primary {
+    &:not(:first-child):not(:last-child) {
+      border-right-color: #40a9ff;
+      border-left-color: #40a9ff;
+      &:disabled {
+        border-color: #d9d9d9;
+      }
+    }
+    &:first-child:not(:last-child) {
+      border-right-color: #40a9ff;
+      &:disabled {
+        border-right-color: #d9d9d9;
+      }
+    }
+    &:last-child:not(:first-child),
+    + .wise-btn-primary {
+      border-left-color: #40a9ff;
+      &[disabled] {
+        border-left-color: #d9d9d9;
+      }
+    }
+    // TODO : 일단 주석처리 -> 아래 그룹에서 포함시켜서 다시한번 묶어주기 ===> done
+    + .wise-btn:not(.wise-btn-primary):not([disabled]) {
+      border-left-color: transparent;
+    }
+  }
+
+  > {
+    .wise-btn,
+    span > .wise-btn {
+      position: relative;
+      &:hover,
+      &:focus,
+      &:active {
+        z-index: 2;
+      }
+      &:disabled {
+        z-index: 0;
+      }
+    }
+    .wise-btn:first-child,
+    span:first-child > .wise-btn {
+      margin-left: 0;
+    }
+    .wise-btn:only-child,
+    span:only-child > .wise-btn {
+      border-radius: 2px;
+    }
+    .wise-btn:first-child:not(:last-child),
+    span:first-child:not(:last-child) > .wise-btn {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    .wise-btn:last-child:not(:first-child),
+    span:last-child:not(:first-child) > .wise-btn {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+    .wise-btn-group {
+      float: left;
+      &:not(:first-child):not(:last-child) > .wise-btn {
+        border-radius: 0;
+      }
+      &:first-child:not(:last-child) > .wise-btn:last-child {
+        padding-right: 8px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      &:last-child:not(:first-child) > .wise-btn:first-child {
+        padding-left: 8px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  .wise-btn-icon-only {
+    font-size: 14px;
+  }
+
+  .wise-btn + .wise-btn,
+  span + .wise-btn,
+  .wise-btn + span,
+  > span + span,
+  + .wise-btn,
+  + .wise-btn-group {
+    margin-left: -1px;
+  }
+
+  .wise-btn {
+    border-radius: 0;
+  }
+
+  .wise-btn-group-rtl {
+    direction: rtl;
+  }
+
+}
+
+// 기타
+.ant-dropdown-button.wise-btn-group {
+  > {
+    .wise-btn-loading {
+      cursor: default;
+      pointer-events: none;
+      + .wise-btn {
+        cursor: default;
+        pointer-events: none;
+        &::before {
+          display: block;
+        }
+      }
+    }
+    .wise-btn:last-child:not(:first-child):not(.wise-btn-icon-only) {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+  }
+}
+
+.wise-btn + .wise-btn-group {
+  margin-left: -1px;
+}
+
+//? 2. btn-group-lg ----------------------------------------------------------------
+.wise-btn-group-lg {
+  > {
+    .wise-btn,
+    span > .wise-btn {
+      height: 40px;
+      padding: 6.4px 15px;
+      font-size: 16px;
+      border-radius: 0;
+    }
+  }
+  .wise-btn .wise-btn-icon-only {
+    width: 40px;
+    height: 40px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+//? 3. btn-group-sm ----------------------------------------------------------------
+
+.wise-btn-group-sm {
+  .wise-btn .wise-btn-icon-only {
+    width: 24px;
+    height: 24px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  > {
+    .wise-btn,
+    span > .wise-btn {
+      height: 24px;
+      padding: 0px 7px;
+      font-size: 14px;
+      border-radius: 0;
+      > {
+        .action {
+          font-size: 14px;
+        }
+      }
+    }
+    .wise-btn:only-child,
+    span:only-child > .wise-btn {
+      border-radius: 2px;
+    }
+    .wise-btn:first-child:not(:last-child),
+    span:first-child:not(:last-child) > .wise-btn {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    .wise-btn:last-child:not(:first-child),
+    span:last-child:not(:first-child) > .wise-btn {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
+}
+
+//? 4. btn-group-rtl ----------------------------------------------------------------
+
+.wise-btn-rtl.wise-btn-group .wise-btn + .wise-btn,
+.wise-btn-rtl.wise-btn + .wise-btn-group,
+.wise-btn-rtl.wise-btn-group span + .wise-btn,
+.wise-btn-rtl.wise-btn-group .wise-btn + span,
+.wise-btn-rtl.wise-btn-group > span + span,
+.wise-btn-rtl.wise-btn-group + .wise-btn,
+.wise-btn-rtl.wise-btn-group + .wise-btn-group,
+.wise-btn-group-rtl.wise-btn-group .wise-btn + .wise-btn,
+.wise-btn-group-rtl.wise-btn + .wise-btn-group,
+.wise-btn-group-rtl.wise-btn-group span + .wise-btn,
+.wise-btn-group-rtl.wise-btn-group .wise-btn + span,
+.wise-btn-group-rtl.wise-btn-group > span + span,
+.wise-btn-group-rtl.wise-btn-group + .wise-btn,
+.wise-btn-group-rtl.wise-btn-group + .wise-btn-group {
+  margin-right: -1px;
+  margin-left: auto;
+}
+
+.wise-btn-grou-rtl {
+  > {
+    .wise-btn:first-child:not(:last-child),
+    span:first-child:not(:last-child) > .wise-btn {
+      border-radius: 0 2px 2px 0;
+    }
+    .wise-btn:last-child:not(:first-child),
+    span:last-child:not(:first-child) > .wise-btn {
+      border-radius: 2px 0 0 2px;
+    }
+  }
+  .wise-btn-group {
+    .wise-btn-primary:last-child:not(:first-child),
+    .wise-btn-primary + .wise-btn-primary {
+      border-right-color: #40a9ff;
+      border-left-color: #d9d9d9;
+      &:disabled {
+        border-right-color: #d9d9d9;
+        border-left-color: #40a9ff;
+      }
+    }
+  }
+  .wise-btn-group-sm {
+    > {
+      .wise-btn:first-child:not(:last-child),
+      span:first-child:not(:last-child) > .wise-btn {
+        border-radius: 0 2px 2px 0;
+      }
+      .wise-btn:last-child:not(:first-child),
+      span:last-child:not(:first-child) > .wise-btn {
+        border-radius: 2px 0 0 2px;
+      }
+    }
+  }
+}
+
+// TODO. [shared / button / button.ts ] ///////////////////////////////////////
+
+//? 1. btn----------------------------------------------------------------
+
+.wise-btn {
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  user-select: none;
+  touch-action: manipulation;
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.85);
+  border-color: #d9d9d9;
+  background: #fff;
+  outline: 0;
+
+  > {
+    .anticon {
+      line-height: 1;
+    }
+    a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    span {
+      display: inline-block;
+    }
+  }
+
+  :not([disabled]) {
+    &:hover {
+      text-decoration: none;
+    }
+    &:active {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+    text-decoration: none;
+    background: #fff;
+  }
+
+  &:hover,
+  &:focus {
+    color: #0b6277;
+    border-color: #40a9ff;
+    background: #fff;
+    text-decoration: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:active {
+    outline: 0;
+    color: #096dd9;
+    border-color: #096dd9;
+    background: #fff;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  // TODO : disabled 다시 정리하기 >_<
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+    }
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+      &:hover, &:focus, &:active {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    z-index: 1;
+    display: none;
+    background: #fff;
+    border-radius: inherit;
+    opacity: 0.35;
+    transition: opacity 0.2s;
+    content: '';
+    pointer-events: none;
+  }
+
+  .anticon {
+    transition: margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .anticon-plus > svg,
+    .anticon-minus > svg {
+      shape-rendering: optimizespeed;
+    }
+  }
+
+  .wise-btn-loading {
+    position: relative;
+    cursor: default;
+    &::before {
+      display: block;
+    }
+  }
+
+  > .wise-btn-loading-icon {
+    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .anticon {
+      padding-right: 8px;
+      animation: none;
+      svg {
+        animation: loadingCircle 1s infinite linear;
+      }
+    }
+    &:only-child .anticon {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  &:focus > span,
+  &:active > span {
+    position: relative;
+  }
+
+  > {
+    .anticon + span,
+    span + .anticon {
+      margin-left: 8px;
+    }
+  }
+
+  .wise-btn-background-ghost {
+    color: #fff;
+    border-color: #fff;
+    &:hover,
+    &:focus {
+      background: transparent;
+      color: #40a9ff;
+      border-color: #40a9ff;
+    }
+    &:active {
+      background: transparent;
+      color: #096dd9;
+      border-color: #096dd9;
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      background: transparent;
+      border-color: #d9d9d9;
+    }
+  }
+
+  .wise-btn-block {
+    width: 100%;
+  }
+
+  &:empty {
+    display: inline-block;
+    width: 0;
+    visibility: hidden;
+    content: '\a0';
+  }
+
+}
+
+a.wise-btn {
+  padding-top: 0.01px !important;
+  line-height: 30px;
+}
+
+//* 기타 (미사용 - 주석처리) ----------------------------------------
+// .ant-card-actions > li > span a:not(.wise-btn),
+// .ant-card-actions > li > span > .anticon {
+//   display: inline-block;
+//   width: 100%;
+//   color: rgba(0, 0, 0, 0.45);
+//   line-height: 22px;
+//   transition: color 0.3s;
+// }
+// .ant-card-actions > li > span a:not(.wise-btn):hover,
+// .ant-card-actions > li > span > .anticon:hover {
+//   color: #1890ff;
+// }
+// .ant-dropdown-wrap .wise-btn > .anticon-down {
+//   font-size: 10px;
+// }
+// .ant-modal-footer .wise-btn + .wise-btn:not(.ant-dropdown-trigger) {
+//   margin-bottom: 0;
+//   margin-left: 8px;
+// }
+// .ant-modal-confirm .ant-modal-confirm-btns .wise-btn + .wise-btn {
+//   margin-bottom: 0;
+//   margin-left: 8px;
+// }
+// .ant-modal-wrap-rtl .ant-modal-footer .wise-btn + .wise-btn {
+//   margin-right: 8px;
+//   margin-left: 0;
+// }
+// .ant-modal-wrap-rtl .ant-modal-confirm-btns .wise-btn + .wise-btn {
+//   margin-right: 8px;
+//   margin-left: 0;
+// }
+// .ant-transfer-operation .wise-btn {
+//   display: block;
+// }
+// .ant-transfer-operation .wise-btn:first-child {
+//   margin-bottom: 4px;
+// }
+// .ant-transfer-operation .wise-btn .anticon {
+//   font-size: 12px;
+// }
+//* 미사용-주석처리 여기까지 ----------------------------------------
+
+
+
+//? 2. btn-primary----------------------------------------------------------------
+.wise-btn-primary {
+  color: #fff;
+  border-color: #0b6277;
+  background: #0b6277;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+  > a:only-child {
+    color: currentcolor;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: transparent;
+      content: '';
+    }
+  }
+
+  &:hover, &:focus {
+    color: #fff;
+    border-color: #0b6277;
+    background: #0b6277;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:active {
+    color: #fff;
+    border-color: #096dd9;
+    background: #096dd9;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+}
+
+//? 3. btn-dashed----------------------------------------------------------------
+.wise-btn-dashed {
+  color: rgba(0, 0, 0, 0.85);
+  border-color: #d9d9d9;
+  background: #fff;
+  border-style: dashed;
+
+  > a:only-child {
+    color: currentcolor;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: transparent;
+      content: '';
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: #0b6277;
+    border-color: #0b6277;
+    background: #fff;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:active {
+    color: #096dd9;
+    border-color: #096dd9;
+    background: #fff;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+}
+
+//? 4. btn-link----------------------------------------------------------------
+.wise-btn-link {
+  color: #0b6277;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+
+  > a:only-child {
+    color: currentcolor;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: transparent;
+      content: '';
+    }
+  }
+
+  &:hover, &:focus {
+    color: #40a9ff;
+    border-color: #0b6277;
+    background: transparent;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:active {
+    color: #096dd9;
+    border-color: #096dd9;
+    background: transparent;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  &:focus, &:active {
+    border-color: transparent;
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: transparent;
+    background: transparent;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: transparent;
+      background: transparent;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+}
+
+//? 5. btn-text----------------------------------------------------------------
+.wise-btn-text {
+  color: rgba(0, 0, 0, 0.85);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+
+  > a:only-child {
+    color: currentcolor;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: transparent;
+      content: '';
+    }
+  }
+
+  &:hover, &:focus {
+    color: #0b6277;
+    border-color: #40a9ff;
+    background: transparent;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:active {
+    color: #096dd9;
+    border-color: #096dd9;
+    background: transparent;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &:hover, &:focus {
+    color: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.018);
+    border-color: transparent;
+  }
+
+  &:active {
+    color: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.028);
+    border-color: transparent;
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: transparent;
+    background: transparent;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: transparent;
+      background: transparent;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+}
+
+//? 6. btn-circle----------------------------------------------------------------
+.wise-btn-circle {
+  min-width: 32px;
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center;
+  border-radius: 50%;
+  .wise-btn-lg {
+    min-width: 40px;
+    border-radius: 50%;
+  }
+  .wise-btn-sm {
+    min-width: 24px;
+    border-radius: 50%;
+  }
+}
+
+//? 7. btn-round----------------------------------------------------------------
+.wise-btn-round {
+  height: 32px;
+  padding: 4px 16px;
+  font-size: 14px;
+  border-radius: 32px;
+  .wise-btn-lg {
+    height: 40px;
+    padding: 6.4px 20px;
+    font-size: 16px;
+    border-radius: 40px;
+  }
+  .wise-btn-sm {
+    height: 24px;
+    padding: 0px 12px;
+    font-size: 14px;
+    border-radius: 24px;
+  }
+  .wise-btn-icon-only {
+    width: auto;
+  }
+}
+
+//? 8. btn-lg----------------------------------------------------------------
+.wise-btn-lg {
+  height: 40px;
+  padding: 6.4px 15px;
+  font-size: 16px;
+  border-radius: 2px;
+}
+a.wise-btn-lg {
+  line-height: 38px;
+}
+
+//? 9. btn-sm----------------------------------------------------------------
+.wise-btn-sm {
+  height: 24px;
+  padding: 0px 7px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+a.wise-btn-sm {
+  line-height: 22px;
+}
+.ant-upload-list-item-card-actions-btn.wise-btn-sm {
+  height: 20px;
+  line-height: 1;
+}
+
+//? 10. btn-dangerous----------------------------------------------------------------
+.wise-btn-dangerous {
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+  background: #fff;
+
+  > a:only-child {
+    color: currentcolor;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: transparent;
+      content: '';
+    }
+  }
+
+  &:hover, &:focus {
+    color: #ff7875;
+    border-color: #ff7875;
+    background: #fff;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:active {
+    color: #d9363e;
+    border-color: #d9363e;
+    background: #fff;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &.wise-btn-primary {
+    color: #fff;
+    border-color: #ff4d4f;
+    background: #ff4d4f;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus {
+      color: #fff;
+      border-color: #ff7875;
+      background: #ff7875;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+
+    &:active {
+      color: #fff;
+      border-color: #d9363e;
+      background: #d9363e;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    text-shadow: none;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus, &:active {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &.wise-btn-link {
+    color: #ff4d4f;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus {
+      color: #40a9ff;
+      border-color: #40a9ff;
+      background: transparent;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+
+    &:active {
+      color: #096dd9;
+      border-color: #096dd9;
+      background: transparent;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+
+
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+
+    &:hover, &:focus {
+      color: #ff7875;
+      border-color: transparent;
+      background: transparent;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+
+    &:active {
+      color: #d9363e;
+      border-color: transparent;
+      background: transparent;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: transparent;
+      background: transparent;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: transparent;
+        background: transparent;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &.wise-btn-text {
+    color: #ff4d4f;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus {
+      color: #40a9ff;
+      border-color: #40a9ff;
+      background: transparent;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:active {
+      color: #096dd9;
+      border-color: #096dd9;
+      background: transparent;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+    &:hover, &:focus {
+      color: #ff7875;
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.018);
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:active {
+      color: #d9363e;
+      border-color: transparent;
+      background: rgba(0, 0, 0, 0.028);
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: transparent;
+      background: transparent;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: transparent;
+        background: transparent;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+//? 11. btn-loading----------------------------------------------------------------
+// with btn
+
+//? 12. btn-background-ghost----------------------------------------------------------------
+
+.wise-btn-background-ghost {
+
+  //! box custom
+  &.wise-btn-primary {
+    // color: #1890ff;
+    color: #fff;
+    border-color: #1890ff;
+    text-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus {
+      color: #40a9ff;
+      border-color: #40a9ff;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:active {
+      color: #096dd9;
+      border-color: #096dd9;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &.ant-btn-danger {
+    color: #ff4d4f;
+    border-color: #ff4d4f;
+    text-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus {
+      color: #ff7875;
+      border-color: #ff7875;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:active {
+      color: #d9363e;
+      border-color: #d9363e;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &.wise-btn-dangerous {
+    color: #ff4d4f;
+    border-color: #ff4d4f;
+    text-shadow: none;
+    > a:only-child {
+      color: currentcolor;
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: transparent;
+        content: '';
+      }
+    }
+    &:hover, &:focus {
+      color: #ff7875;
+      border-color: #ff7875;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:active {
+      color: #d9363e;
+      border-color: #d9363e;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+      text-shadow: none;
+      box-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus, &:active {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+    &.wise-btn-link {
+      color: #ff4d4f;
+      border-color: transparent;
+      text-shadow: none;
+      > a:only-child {
+        color: currentcolor;
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          content: '';
+        }
+      }
+      &:hover, &:focus {
+        color: #ff7875;
+        border-color: transparent;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+      &:active {
+        color: #d9363e;
+        border-color: transparent;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+      &:disabled {
+        color: rgba(0, 0, 0, 0.25);
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        text-shadow: none;
+        box-shadow: none;
+        > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+        &:hover, &:focus, &:active {
+          color: rgba(0, 0, 0, 0.25);
+          border-color: #d9d9d9;
+          background: #f5f5f5;
+          text-shadow: none;
+          box-shadow: none;
+          > a:only-child {
+            color: currentcolor;
+            &::after {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background: transparent;
+              content: '';
+            }
+          }
+        }
+        &:hover, &:focus, &:active {
+          color: rgba(0, 0, 0, 0.25);
+          border-color: #d9d9d9;
+          background: #f5f5f5;
+          text-shadow: none;
+          box-shadow: none;
+        }
+        > a:only-child, &:hover > a:only-child, &:focus > a:only-child, &:active > a:only-child {
+          color: currentcolor;
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//? 13. btn-block----------------------------------------------------------------
+// with btn
+
+//? 14. input-search-button----------------------------------------------------------------
+
+.ant-input-group.ant-input-group-compact .ant-input-group-wrapper:not(:last-child).ant-input-search > .ant-input-group > .ant-input-group-addon > .wise-input-search-button {
+  border-radius: 0;
+}
+
+.ant-input-search {
+
+  .ant-input {
+    &:hover + .ant-input-group-addon .wise-input-search-button:not(.wise-btn-primary),
+    &:focus + .ant-input-group-addon .wise-input-search-button:not(.wise-btn-primary) {
+      border-left-color: #40a9ff;
+    }
+  }
+
+  > .ant-input-group > .ant-input-group-addon:last-child .wise-input-search-button {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0 2px 2px 0;
+    &:not(.wise-btn-primary) {
+      color: rgba(0, 0, 0, 0.45);
+      &.wise-btn-loading::before {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+
+}
+
+.wise-input-search-button {
+  height: 32px;
+  &:hover, &:focus {
+    z-index: 1;
+  }
+}
+
+.ant-input-search-large .wise-input-search-button {
+  height: 40px;
+}
+
+.ant-input-search-small .wise-input-search-button {
+  height: 24px;
+}
+
+.ant-input-search-rtl {
+
+  .ant-input {
+    &:hover + .ant-input-group-addon .wise-input-search-button:not(.wise-btn-primary),
+    &:focus + .ant-input-group-addon .wise-input-search-button:not(.wise-btn-primary) {
+      border-right-color: #40a9ff;
+      border-left-color: #d9d9d9;
+    }
+  }
+
+  > .ant-input-group > .ant-input-group-addon .wise-input-search-button {
+    border-radius: 2px 0 0 2px;
+  }
+
+  &.ant-input-search-enter-button {
+    + .ant-input-group-addon .wise-input-search-button.wise-btn-icon-only {
+      width: 32px;
+      height: 32px;
+    }
+    input {
+      + .ant-input-group-addon .wise-input-search-button.wise-btn-icon-only {
+        width: 32px;
+        height: 32px;
+      }
+      + .ant-input-group-addon .wise-input-search-button.wise-btn-icon-only.wise-btn-sm {
+        width: 24px;
+        height: 24px;
+      }
+      + .ant-input-group-addon .wise-input-search-button.wise-btn-icon-only.wise-btn-lg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    + .ant-input-group-addon .wise-input-search-button.wise-btn-icon-only.wise-btn-sm {
+      width: 24px;
+      height: 24px;
+    }
+    + .ant-input-group-addon .wise-input-search-button.wise-btn-icon-only.wise-btn-lg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.ant-input-number-group.ant-input-number-group-compact .ant-input-group-wrapper:not(:last-child).ant-input-search > .ant-input-group > .ant-input-group-addon > .wise-input-search-button {
+  border-radius: 0;
+}
+
+
+//? 15. btn-rtl----------------------------------------------------------------
+// 일부 btn-group-rtl
+.wise-btn-rtl {
+  direction: rtl;
+  &.wise-btn > {
+    .wise-btn-loading-icon .anticon {
+      padding-right: 0;
+      padding-left: 8px;
+    }
+    .anticon + span, span + .anticon {
+      margin-right: 8px;
+      margin-left: 0;
+    }
+  }
+}
+
+
+//? 16. btn-icon-only----------------------------------------------------------------
+
+.wise-btn-icon-only {
+  width: 32px;
+  height: 32px;
+  padding: 2.4px 0;
+  font-size: 16px;
+  border-radius: 2px;
+  vertical-align: -3px;
+
+  > * {
+    font-size: 16px;
+  }
+
+  &.wise-btn-lg {
+    width: 40px;
+    height: 40px;
+    padding: 4.9px 0;
+    font-size: 18px;
+    border-radius: 2px;
+    > * {
+      font-size: 18px;
+    }
+  }
+
+  &.wise-btn-sm {
+    width: 24px;
+    height: 24px;
+    padding: 0px 0;
+    font-size: 14px;
+    border-radius: 2px;
+    > * {
+      font-size: 14px;
+    }
+  }
+
+  > .anticon {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+a.wise-btn-icon-only {
+  vertical-align: -1px;
+  > .anticon {
+    display: inline;
+  }
+}
+
+// 기타
+.ant-dropdown-button .wise-btn-group > .wise-btn:last-child:not(:first-child):not(.wise-btn-icon-only) {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+
