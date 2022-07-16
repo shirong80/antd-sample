@@ -12,7 +12,7 @@ import { ModalOptions } from '../modal-types';
   exportAs: 'NzModalCloseBuiltin',
   templateUrl: './modal-close.component.html',
   host: {
-    class: 'ant-modal-close',
+    class: 'wise-modal-close',
     'aria-label': 'Close',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,

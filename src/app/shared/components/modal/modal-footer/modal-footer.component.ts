@@ -25,7 +25,7 @@ import { ModalButtonOptions, ModalOptions } from '../modal-types';
   exportAs: 'NzModalFooterBuiltin',
   templateUrl: './modal-footer.component.html',
   host: {
-    class: 'ant-modal-footer',
+    class: 'wise-modal-footer',
   },
   changeDetection: ChangeDetectionStrategy.Default,
 })

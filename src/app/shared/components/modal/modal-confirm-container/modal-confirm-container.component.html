@@ -1,28 +1,28 @@
 <div
   #modalElement
   role="document"
-  class="ant-modal"
+  class="wise-modal"
   [ngClass]="config.nzClassName!"
   [ngStyle]="config.nzStyle!"
   [style.width]="config?.nzWidth! | nzToCssUnit"
 >
-  <div class="ant-modal-content">
+  <div class="wise-modal-content">
     <button *ngIf="config.nzClosable" nz-modal-close (click)="onCloseClick()"></button>
-    <div class="ant-modal-body" [ngStyle]="config.nzBodyStyle!">
-      <div class="ant-modal-confirm-body-wrapper">
-        <div class="ant-modal-confirm-body">
+    <div class="wise-modal-body" [ngStyle]="config.nzBodyStyle!">
+      <div class="wise-modal-confirm-body-wrapper">
+        <div class="wise-modal-confirm-body">
           <i nz-icon [nzType]="config.nzIconType!"></i>
-          <span class="ant-modal-confirm-title">
+          <span class="wise-modal-confirm-title">
             <ng-container *nzStringTemplateOutlet="config.nzTitle">
               <span [innerHTML]="config.nzTitle"></span>
             </ng-container>
           </span>
-          <div class="ant-modal-confirm-content">
+          <div class="wise-modal-confirm-content">
             <ng-template cdkPortalOutlet></ng-template>
             <div *ngIf="isStringContent" [innerHTML]="config.nzContent"></div>
           </div>
         </div>
-        <div class="ant-modal-confirm-btns">
+        <div class="wise-modal-confirm-btns">
           <button
             *ngIf="config.nzCancelText !== null"
             [attr.cdkFocusInitial]="config.nzAutofocus === 'cancel' || null"

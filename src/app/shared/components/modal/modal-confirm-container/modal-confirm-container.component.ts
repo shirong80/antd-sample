@@ -43,9 +43,9 @@ import { ModalOptions } from '../modal-types';
     tabindex: '-1',
     role: 'dialog',
     '[class]':
-      'config.nzWrapClassName ? "ant-modal-wrap " + config.nzWrapClassName : "ant-modal-wrap"',
-    '[class.ant-modal-wrap-rtl]': `dir === 'rtl'`,
-    '[class.ant-modal-centered]': 'config.nzCentered',
+      'config.nzWrapClassName ? "wise-modal-wrap " + config.nzWrapClassName : "wise-modal-wrap"',
+    '[class.wise-modal-wrap-rtl]': `dir === 'rtl'`,
+    '[class.wise-modal-centered]': 'config.nzCentered',
     '[style.zIndex]': 'config.nzZIndex',
     '[@.disabled]': 'config.nzNoAnimation',
     '[@modalContainer]': 'state',

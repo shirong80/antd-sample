@@ -78,7 +78,7 @@ export class NzModalService implements OnDestroy {
     }
 
     options.nzModalType = 'confirm';
-    options.nzClassName = `ant-modal-confirm ant-modal-confirm-${confirmType} ${
+    options.nzClassName = `wise-modal-confirm wise-modal-confirm-${confirmType} ${
       options.nzClassName || ''
     }`;
     return this.create(options);

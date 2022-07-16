@@ -6,18 +6,18 @@
 import { NzConfigKey } from 'ng-zorro-antd/core/config';
 
 export const ZOOM_CLASS_NAME_MAP = {
-  enter: 'ant-zoom-enter',
-  enterActive: 'ant-zoom-enter-active',
-  leave: 'ant-zoom-leave',
-  leaveActive: 'ant-zoom-leave-active',
+  enter: 'wise-zoom-enter',
+  enterActive: 'wise-zoom-enter-active',
+  leave: 'wise-zoom-leave',
+  leaveActive: 'wise-zoom-leave-active',
 };
 
 export const FADE_CLASS_NAME_MAP = {
-  enter: 'ant-fade-enter',
-  enterActive: 'ant-fade-enter-active',
-  leave: 'ant-fade-leave',
-  leaveActive: 'ant-fade-leave-active',
+  enter: 'wise-fade-enter',
+  enterActive: 'wise-fade-enter-active',
+  leave: 'wise-fade-leave',
+  leaveActive: 'wise-fade-leave-active',
 };
 
-export const MODAL_MASK_CLASS_NAME = 'ant-modal-mask';
+export const MODAL_MASK_CLASS_NAME = 'wise-modal-mask';
 export const NZ_CONFIG_MODULE_NAME: NzConfigKey = 'modal';
